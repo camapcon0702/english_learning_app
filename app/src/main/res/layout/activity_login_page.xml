@@ -39,9 +39,6 @@
         tools:layout_editor_absoluteX="32dp"
         tools:ignore="MissingConstraints"
         android:textColorHint="@color/white"
-
-
-
         />
 
     <EditText
@@ -71,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtPassword"
         android:layout_marginTop="15dp"
         android:textColor="@color/white"
-        ></TextView>
+        />
 
     <Button
         tools:ignore="MissingConstraints"
@@ -84,13 +81,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
-
     </Button>
-
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
