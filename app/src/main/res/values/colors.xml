@@ -9,4 +9,5 @@
     <color name="correctAnswerColor">#CCA9A9</color>
     <color name="incorrectAnswerColor">#60b651</color>
     <color name="buttonColor">#ffad43</color>
+    <color name="textLink">#0000ff </color>
 </resources>
