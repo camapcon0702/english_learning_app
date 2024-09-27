@@ -7,5 +7,6 @@
     <color name="listViewColor">#FEFEFE</color>
     <color name="dayInWeeColor">#fe9861</color>
     <color name="correctAnswerColor">#CCA9A9</color>
-    <color name="uncorrectAnswerColor">#60b651</color>
+    <color name="incorrectAnswerColor">#60b651</color>
+    <color name="buttonColor">#ffad43</color>
 </resources>
