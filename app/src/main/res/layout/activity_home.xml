@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="10dp"
-            android:text="Hi! Bro"
+            android:text="Hi!  111Bro"
             android:textStyle="bold"
             android:textSize="32sp"
             android:layout_gravity="center" />
