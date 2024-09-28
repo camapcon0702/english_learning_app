@@ -1,109 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_page"
-    android:background="@color/headerColor"
+    android:background="@color/mainBackgroundColor"
+    android:padding="40dp"
     >
-
-
-    <TextView
-        android:id="@+id/lblDangKi"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Đăng kí"
-        android:textSize="45sp"
-        android:textStyle="bold"
-
-        android:layout_marginTop="225dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/white" tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="350dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="25dp"
-        android:hint="Email"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblDangKi"
-        tools:layout_editor_absoluteX="32dp"
-        tools:ignore="MissingConstraints"
-        android:textColorHint="@color/white"
-
-
-
-        />
-
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="350dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="10dp"
-        android:hint="Mật khẩu"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-        tools:layout_editor_absoluteX="32dp"
-        tools:ignore="MissingConstraints"
-        android:textColorHint="@color/white"
-        />
-
-    <EditText
-        android:id="@+id/txtConfirmPassword"
-        android:layout_width="350dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="10dp"
-        android:hint="Xác nhận mật khẩu"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword"
-        tools:layout_editor_absoluteX="32dp"
-        tools:ignore="MissingConstraints"
-        android:textColorHint="@color/white"
-        />
-
-    <TextView
-        android:id="@+id/lblGioiThieu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        android:text="Bạn đã có tài khoản? Đăng nhập!"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtConfirmPassword"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/white"
-        ></TextView>
-
-    <Button
-        tools:ignore="MissingConstraints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Đăng nhập"
-        android:textSize="25sp"
-        app:layout_constraintTop_toBottomOf="@+id/lblGioiThieu"
-        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"
         >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            />
 
-    </Button>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textSize="24sp"
+            android:background="@drawable/component_background"
+            android:padding="10dp"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="20dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
 
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Họ"
+                android:textSize="24sp"
+                android:layout_weight="2.5"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/component_background"
+                android:padding="10dp"
+                android:inputType="textPassword" />
 
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Tên"
+                android:textSize="24sp"
+                android:layout_weight="1.5"
+                android:background="@drawable/component_background"
+                android:padding="10dp"
+                android:inputType="text" />
+        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mật khẩu"
+            android:textSize="24sp"
+            android:background="@drawable/component_background"
+            android:padding="10dp"
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Xác nhận mật khẩu"
+            android:textSize="24sp"
+            android:background="@drawable/component_background"
+            android:padding="10dp"
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bạn đã có tài khoản? "
+                android:textSize="20sp"
+                android:textColor="@color/black" />
 
+            <TextView
+                android:id="@+id/dang_nhap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng nhập"
+                android:textSize="20sp"
+                android:textColor="@color/textLink"
+                android:layout_marginStart="4dp"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:background="@drawable/button_background"
+            />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
