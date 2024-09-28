@@ -42,7 +42,7 @@ public class home_page extends AppCompatActivity {
 
         for (GridItem item : gridItems) {
 
-            View itemView = getLayoutInflater().inflate(R.layout.grid_item, null);
+            View itemView = getLayoutInflater().inflate(R.layout.grid_item_vertical, null);
             ImageView icon = itemView.findViewById(R.id.item_icon);
             TextView text = itemView.findViewById(R.id.item_text);
             icon.setImageResource(item.getIconRes());
