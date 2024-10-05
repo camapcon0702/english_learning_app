@@ -5,7 +5,10 @@
       <SelectionState runConfigName="MainActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="learning_page">
+      <SelectionState runConfigName="grammar_page">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="LearningPage">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
