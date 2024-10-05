@@ -32,7 +32,7 @@ public class GrammarPage extends AppCompatActivity {
         GridView gridView = findViewById(R.id.gridview);
 
         List<GridItem> gridItems = Arrays.asList(
-            new GridItem(R.drawable.icon_tense, "12 Thì cơ bản"),
+            new GridItem(R.drawable.icon_tense, "12 Thì Cơ Bản"),
             new GridItem(R.drawable.icon_clause, "Mệnh đề"),
             new GridItem(R.drawable.icon_wordtype, "Từ loại")
         );
