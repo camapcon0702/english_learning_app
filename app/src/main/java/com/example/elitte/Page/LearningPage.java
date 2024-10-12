@@ -1,23 +1,29 @@
-package com.example.elitte;
+package com.example.elitte.Page;
 
 import android.os.Bundle;
 import android.widget.GridView;
+
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.elitte.Data.GridItem;
+import com.example.elitte.Data.GridItemAdapterHor;
+import com.example.elitte.R;
+
 import java.util.Arrays;
 import java.util.List;
 
-public class HomePage extends AppCompatActivity {
+public class LearningPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.home_page), (v, insets) -> {
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_learning_page);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.learning_page), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -26,14 +32,12 @@ public class HomePage extends AppCompatActivity {
         GridView gridView = findViewById(R.id.gridview);
 
         List<GridItem> gridItems = Arrays.asList(
-                new GridItem(R.drawable.icon_learning, "Học tập"),
-                new GridItem(R.drawable.icon_execise, "Bài tập"),
-                new GridItem(R.drawable.icon_flashcard, "Flash card"),
-                new GridItem(R.drawable.icon_minigamr, "Mini game"),
-                new GridItem(R.drawable.icon_calendar, "Lịch học")
+                new GridItem(R.drawable.icon_grammar, "Ngữ pháp"),
+                new GridItem(R.drawable.icon_vocabulary, "Từ vựng")
         );
 
-        GridItemAdapterVer adapter = new GridItemAdapterVer(this, gridItems);
-        gridView.setAdapter(adapter);
+        GridItemAdapterHor adapterHor = new GridItemAdapterHor(this, gridItems);
+
+        gridView.setAdapter(adapterHor);
     }
 }

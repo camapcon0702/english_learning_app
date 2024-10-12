@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/component_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="airport (n) [ˈeəpɔːt]"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Định nghĩa:"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/definition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sân bay = the place that you go to get on a plane"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_airport"
+            android:scaleType="centerCrop"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ví dụ:"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/example"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Security checks has become really strict at the [airport]. (Dịch: Kiểm tra an ninh ở sân bay đã trở nên rất nghiêm ngặt.)"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
