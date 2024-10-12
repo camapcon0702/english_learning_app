@@ -1,6 +1,7 @@
-package com.example.elitte;
+package com.example.elitte.Page;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +9,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class login_page extends AppCompatActivity {
+import com.example.elitte.R;
+
+public class LoginPage extends AppCompatActivity {
+
+
+    EditText txtEmail;
+    EditText txtMatKhau;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +27,13 @@ public class login_page extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+    }
+
+    private void addControls(){
+        txtEmail = this.findViewById(R.id.txtEmail);
+        txtMatKhau = this.findViewById(R.id.txtMatKhau);
+
+
     }
 }

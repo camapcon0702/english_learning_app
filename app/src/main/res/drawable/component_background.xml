@@ -2,7 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <solid android:color="@color/listViewColor"/>
-<!--    <stroke android:width="1dip"-->
-<!--        android:color="@color/black"/>-->
-    <corners android:radius="16dp"/>
+
+    <corners android:radius="10dp"/>
 </shape>
