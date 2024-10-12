@@ -27,13 +27,13 @@
 
         </activity>
         <activity
-            android:name=".vocabulary_activity"
+            android:name=".Page.VocabularyPage"
             android:exported="false" />
         <activity
-            android:name=".Grammar"
+            android:name=".Page.GrammarPage"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Page.MainActivity"
             android:exported="true">
 
         </activity>

@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 import com.example.elitte.R;
+import com.example.elitte.entity.WordItem;
 
 import java.util.List;
 

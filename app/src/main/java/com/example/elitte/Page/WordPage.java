@@ -9,7 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.elitte.Data.WordItem;
+import com.example.elitte.entity.WordItem;
 import com.example.elitte.Data.WordItemAdapter;
 import com.example.elitte.R;
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/component_background"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/word_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Danh từ (Noun)"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/word_type_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Danh từ là những từ chỉ người, sự vật, sự việc, khái niệm, hiện tượng, địa điểm hay nơi chốn."
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/learn_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Học ngay"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+
+</LinearLayout>
