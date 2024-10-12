@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E22020">
+    android:background="@drawable/component_background">
 
 <!--    <ImageView-->
 <!--        android:layout_width="match_parent"-->
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="back"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         style="@style/Base.TextAppearance.AppCompat.Display1"
         android:gravity="center"/>
 

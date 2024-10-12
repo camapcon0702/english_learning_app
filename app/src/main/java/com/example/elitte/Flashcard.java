@@ -40,10 +40,6 @@ public class Flashcard extends AppCompatActivity {
                 flipCard(view);
             }
         });
-
-        if (getIntent().getBooleanExtra("flipCard", false)) {
-            flipCard(mainLayout); // Gọi flipCard
-        }
     }
 
     private void changeCameraDistance() {
