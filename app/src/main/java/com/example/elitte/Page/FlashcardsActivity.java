@@ -1,20 +1,17 @@
-package com.example.elitte;
+package com.example.elitte.Page;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.elitte.R;
 
 public class FlashcardsActivity extends AppCompatActivity {
 

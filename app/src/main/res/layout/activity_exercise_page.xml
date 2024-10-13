@@ -5,6 +5,174 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Page.ExercisePage">
+    tools:context=".Page.ExercisePage"
+    android:background="@color/mainBackgroundColor">
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_backround"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="Quay lại"
+            android:drawableLeft="@drawable/back_icon"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@id/linear1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nextButton">
+        <TextView
+            android:id="@+id/numbre_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question: 1"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mary rarely uses social networks,___?"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            />
+        <LinearLayout
+            android:id="@+id/optionA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@drawable/answer_background_default"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/optionALabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingEnd="10dp" />
+            <TextView
+                android:id="@+id/answerA"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="doesn't she"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@drawable/answer_background_default"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/optionBLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingEnd="10dp" />
+            <TextView
+                android:id="@+id/answerB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="isn't she"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@drawable/answer_background_default"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/answerC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingEnd="10dp" />
+            <TextView
+                android:id="@+id/optionCContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="is she"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@drawable/answer_background_default"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/optionDLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D."
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingEnd="10dp" />
+            <TextView
+                android:id="@+id/answerD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="does she"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tiếp theo"
+        android:background="@drawable/button_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:padding="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

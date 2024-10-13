@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ELITTE"
         tools:targetApi="31" >
         <activity
-            android:name=".Page.WordPage"
+            android:name=".Page.FlashcardsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
 
 
         <activity
-            android:name=".Page.VocabularyPage"
+            android:name=".Page.ExercisePage"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
