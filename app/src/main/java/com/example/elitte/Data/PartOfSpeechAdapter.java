@@ -48,7 +48,7 @@ public class PartOfSpeechAdapter extends ArrayAdapter<PartOfSpeech> {
         }
         PartOfSpeech partOfSpeech =arrayPartOfSpeech.get(position);
 
-
+        return null;
     }
 
     static class ViewHolder {
