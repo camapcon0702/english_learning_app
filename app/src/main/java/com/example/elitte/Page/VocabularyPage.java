@@ -1,7 +1,9 @@
 package com.example.elitte.Page;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,8 @@ import java.util.List;
 
 public class VocabularyPage extends AppCompatActivity {
 
+    GridView gridView;
+    TextView txtBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,16 @@ public class VocabularyPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        addControls();
+        addEvents();
 
-        GridView gridView = findViewById(R.id.gridview);
+
+    }
+
+
+    private void addControls(){
+        gridView = findViewById(R.id.gridview);
+        txtBack = findViewById(R.id.back);
 
         List<GridItem> gridItems = Arrays.asList(
                 new GridItem(R.drawable.icon_country, "Quốc gia"),
@@ -43,6 +55,12 @@ public class VocabularyPage extends AppCompatActivity {
 
         GridItemAdapterVer adapterVer = new GridItemAdapterVer(this, gridItems);
         gridView.setAdapter(adapterVer);
+    }
 
+    private void addEvents(){
+        txtBack.setOnClickListener(e -> {
+            Intent intent = new Intent(VocabularyPage.this, LearningPage.class);
+            startActivity(intent);
+        });
     }
 }
