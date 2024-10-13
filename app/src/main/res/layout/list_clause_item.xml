@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/component_background"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/clause_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mệnh đề độc lập"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/clause_type_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mệnh đề độc lập (Independent clauses) là một nhóm từ có chứa một chủ ngữ và một động từ."
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/learn_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Học ngay"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+
+</LinearLayout>
