@@ -37,9 +37,9 @@ public class GridItemAdapterHor extends ArrayAdapter<GridItem> {
         viewHolder.icon.setImageResource(gridItem.getIconRes());
         viewHolder.title.setText(gridItem.getTitle());
 
-        convertView.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Clicked: " + gridItem.getTitle(), Toast.LENGTH_SHORT).show()
-        );
+//        convertView.setOnClickListener(v ->
+//                Toast.makeText(getContext(), "Clicked: " + gridItem.getTitle(), Toast.LENGTH_SHORT).show()
+//        );
 
         return convertView;
     }

@@ -1,6 +1,9 @@
 package com.example.elitte.Page;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -16,6 +19,8 @@ import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
+    GridView gridView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +32,19 @@ public class HomePage extends AppCompatActivity {
             return insets;
         });
 
-        GridView gridView = findViewById(R.id.gridview);
+
+        addControls();
+        addEvents();
+
+
+
+
+
+    }
+
+    public void addControls(){
+
+        gridView = findViewById(R.id.gridview);
 
         List<GridItem> gridItems = Arrays.asList(
                 new GridItem(R.drawable.icon_learning, "Học tập"),
@@ -39,5 +56,27 @@ public class HomePage extends AppCompatActivity {
 
         GridItemAdapterVer adapter = new GridItemAdapterVer(this, gridItems);
         gridView.setAdapter(adapter);
+
     }
+
+    public void addEvents(){
+        // set sự kiện khi nhấn vào từng item
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        Intent intent = new Intent(HomePage.this, LearningPage.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(HomePage.this, LearningPage.class);
+                        startActivity(intent1);
+                        break;
+
+                }
+            }
+        });
+    }
+
 }
