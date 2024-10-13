@@ -10,4 +10,5 @@
     <color name="incorrectAnswerColor">#60b651</color>
     <color name="buttonColor">#ffad43</color>
     <color name="textLink">#0000ff </color>
+    <color name="transparent">@android:color/transparent</color>
 </resources>
