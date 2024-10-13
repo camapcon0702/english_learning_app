@@ -1,4 +1,4 @@
-package com.example.elitte.Data;
+package com.example.elitte.entity;
 
 public class GridItem {
     private int iconRes;

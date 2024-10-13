@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elitte.R;
+import com.example.elitte.entity.GridItem;
 
 import java.util.List;
 
