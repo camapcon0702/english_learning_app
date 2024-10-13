@@ -38,11 +38,10 @@ public class FlashcardsActivity extends AppCompatActivity {
         findViews();
         loadAnimations();
         changeCameraDistance();
-        View mainLayout = findViewById(R.id.main);  // Hoặc bất kỳ view nào bạn muốn gán click
-        mainLayout.setOnClickListener(new View.OnClickListener() {
+        View childFrame = findViewById(R.id.child_frame);  // Hoặc bất kỳ view nào bạn muốn gán click
+        childFrame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Gọi hàm flipCard khi người dùng click vào view
                 flipCard(view);
             }
         });
