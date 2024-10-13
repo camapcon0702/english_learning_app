@@ -1,7 +1,9 @@
 package com.example.elitte.Page;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,9 @@ import java.util.List;
 
 public class GrammarPage extends AppCompatActivity {
 
+    TextView txtBack;
+    GridView gridView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,15 +34,28 @@ public class GrammarPage extends AppCompatActivity {
             return insets;
         });
 
-        GridView gridView = findViewById(R.id.gridview);
+        addControls();
+        addEvents();
 
+    }
+
+    private void addControls(){
+        gridView = findViewById(R.id.gridview);
+        txtBack = findViewById(R.id.back);
         List<GridItem> gridItems = Arrays.asList(
-            new GridItem(R.drawable.icon_tense, "12 Thì Cơ Bản"),
-            new GridItem(R.drawable.icon_clause, "Mệnh đề"),
-            new GridItem(R.drawable.icon_wordtype, "Từ loại")
+                new GridItem(R.drawable.icon_tense, "12 Thì Cơ Bản"),
+                new GridItem(R.drawable.icon_clause, "Mệnh đề"),
+                new GridItem(R.drawable.icon_wordtype, "Từ loại")
         );
-
         GridItemAdapterHor adapterHor = new GridItemAdapterHor(this, gridItems);
         gridView.setAdapter(adapterHor);
     }
+
+    private void addEvents(){
+        txtBack.setOnClickListener(e -> {
+            Intent intent = new Intent(GrammarPage.this, LearningPage.class);
+            startActivity(intent);
+        });
+    }
+
 }

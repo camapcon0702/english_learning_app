@@ -1,7 +1,11 @@
 package com.example.elitte.Page;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +22,9 @@ import java.util.List;
 
 public class LearningPage extends AppCompatActivity {
 
+    TextView txtBack;
+    GridView gridView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +36,15 @@ public class LearningPage extends AppCompatActivity {
             return insets;
         });
 
-        GridView gridView = findViewById(R.id.gridview);
+        addControls();
+        addEvent();
+
+    }
+
+    private void addControls(){
+
+        gridView = findViewById(R.id.gridview);
+        txtBack = findViewById(R.id.back);
 
         List<GridItem> gridItems = Arrays.asList(
                 new GridItem(R.drawable.icon_grammar, "Ngữ pháp"),
@@ -39,5 +54,32 @@ public class LearningPage extends AppCompatActivity {
         GridItemAdapterHor adapterHor = new GridItemAdapterHor(this, gridItems);
 
         gridView.setAdapter(adapterHor);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        Intent intent = new Intent(LearningPage.this, GrammarPage.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(LearningPage.this, VocabularyPage.class);
+                        startActivity(intent1);
+                        break;
+
+                }
+            }
+        });
+
+    }
+
+    private void addEvent(){
+        txtBack.setOnClickListener(e -> {
+            Intent intent = new Intent(LearningPage.this, HomePage.class);
+            startActivity(intent);
+        });
+
+
     }
 }

@@ -39,9 +39,9 @@ public class GridItemAdapterVer extends ArrayAdapter<GridItem> {
         holder.title.setText(gridItem.getTitle());
 
         // Thêm sự kiện nhấn cho mỗi mục
-        convertView.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Clicked: " + gridItem.getTitle(), Toast.LENGTH_SHORT).show()
-        );
+//        convertView.setOnClickListener(v ->
+//                Toast.makeText(getContext(), "Clicked: " + gridItem.getTitle(), Toast.LENGTH_SHORT).show()
+//        );
 
         return convertView;
     }
