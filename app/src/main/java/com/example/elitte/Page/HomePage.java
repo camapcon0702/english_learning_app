@@ -70,8 +70,12 @@ public class HomePage extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 1:
-                        Intent intent1 = new Intent(HomePage.this, LearningPage.class);
+                        Intent intent1 = new Intent(HomePage.this, HomeExercisePage.class);
                         startActivity(intent1);
+                        break;
+                    case 2:
+                        Intent intent2 = new Intent(HomePage.this, FlashcardsActivity.class);
+                        startActivity(intent2);
                         break;
 
                 }
