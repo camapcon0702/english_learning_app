@@ -9,8 +9,67 @@ public class Tense {
     private String example;
     private String note;
     private String affirmative;
-    private String positive;
-    private String Question;
+    private String negative;
+    private String question;
+    private String sign;
+
+    public Tense(String nameTense, String affirmative, String negative, String question, String keyUse, String example, String sign) {
+        this.nameTense = nameTense;
+        this.affirmative = affirmative;
+        this.negative = negative;
+        this.question = question;
+        this.keyUse = keyUse;
+        this.example = example;
+        this.sign = sign;
+    }
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getAffirmative() {
+        return affirmative;
+    }
+
+    public void setAffirmative(String affirmative) {
+        this.affirmative = affirmative;
+    }
+
+    public String getNegative() {
+        return negative;
+    }
+
+    public void setNegative(String negative) {
+        this.negative = negative;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
 
     public Tense(int idTense, String nameTense, String contentTense, String structureTense, String keyUse, String example, String note) {
         this.idTense = idTense;

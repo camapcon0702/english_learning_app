@@ -45,7 +45,8 @@
     <LinearLayout
         android:id="@+id/tense_layout"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
@@ -123,6 +124,7 @@
             android:id="@+id/tense_key_use"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp">
 
@@ -132,7 +134,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
             android:text="Ví dụ:"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -154,9 +155,18 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
-            android:text="Lưu ý:"
+            android:text="Dấu hiệu nhận biết:"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/text_signs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Every day/ week/ month… \nOften, usually, frequently \nSometimes, occasionally \nAlways, constantly \nSeldom, rarely "
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textColor="@color/black"
             android:textSize="16sp"/>
 
     </LinearLayout>
