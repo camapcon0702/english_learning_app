@@ -5,15 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Page.PartOfSpeechActivity"
+    tools:context=".Page.ListTenseActivity"
     android:background="@color/mainBackgroundColor">
-
-
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/header_backround"
+        android:background="@drawable/header_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal"
@@ -32,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Từ loại"
+            android:text="Thì"
             android:textSize="30sp"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -43,7 +41,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/list_part_of_speech"
+        android:id="@+id/list_tense"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:dividerHeight="16dp"
@@ -56,6 +54,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
