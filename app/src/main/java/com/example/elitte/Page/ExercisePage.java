@@ -144,7 +144,7 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
         answerList3.add(new Answer("had", false));
 
         list.add(new Question(3, "She always __________ her lunch at noon.", answerList3,
-                "Đối với ngôi thứ 3 số ít, động từ have phải được chia thành has trong thì hiện tại đơn."));
+                "Đối với ngôi thứ ba số ít, động từ have phải được chia thành has trong thì hiện tại đơn."));
 
         return list;
     }
