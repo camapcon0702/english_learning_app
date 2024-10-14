@@ -1,0 +1,134 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Page.MiniGamePage"
+    android:background="@color/mainBackgroundColor">
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="Quay lại"
+            android:drawableLeft="@drawable/back_icon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mini game"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="20dp">
+
+        <!-- TextView hiển thị số câu trả lời đúng -->
+        <TextView
+            android:id="@+id/tv_correct_answers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số câu trả lời đúng: 0"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:id="@+id/box_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_weight="3"
+            android:background="@drawable/component_background_mini_game"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/question_mini_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="b/t/e/n/w/e/e"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:padding="14dp"
+                android:hint="Đáp án của bạn"
+                android:layout_marginTop="30dp" />
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_button"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/btn_skip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Bỏ qua"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:padding="15dp"
+                android:background="@drawable/button_background" />
+
+            <Button
+                android:id="@+id/btn_reply"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Trả lời"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:padding="15dp"
+                android:background="@drawable/button_background" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
