@@ -2,8 +2,10 @@ package com.example.elitte.Page;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +22,12 @@ public class FlashcardsActivity extends AppCompatActivity {
     private boolean mIsBackVisible = false;
     private View mCardFrontLayout;
     private View mCardBackLayout;
-
+    TextView txtBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -42,6 +47,8 @@ public class FlashcardsActivity extends AppCompatActivity {
                 flipCard(view);
             }
         });
+        addControls();
+        addEvents();
     }
 
     private void changeCameraDistance() {
@@ -75,5 +82,21 @@ public class FlashcardsActivity extends AppCompatActivity {
             mSetLeftIn.start();
             mIsBackVisible = false;
         }
+
+
     }
+
+    private void addControls(){
+        txtBack = findViewById(R.id.back);
+
+    }
+
+    private void addEvents(){
+        txtBack.setOnClickListener(e -> {
+            Intent intent = new Intent(FlashcardsActivity.this, HomePage.class);
+            startActivity(intent);
+        });
+    }
+
+
 }
