@@ -4,18 +4,34 @@ public class Tense {
     private int idTense;
     private String nameTense;
     private String contentTense;
-    private String structTense;
-    private String signTense;
+    private String structureTense;
+    private String keyUse;
+    private String example;
+    private String note;
+    private String affirmative;
+    private String positive;
+    private String Question;
+
+    public Tense(int idTense, String nameTense, String contentTense, String structureTense, String keyUse, String example, String note) {
+        this.idTense = idTense;
+        this.nameTense = nameTense;
+        this.contentTense = contentTense;
+        this.structureTense = structureTense;
+        this.keyUse = keyUse;
+        this.example = example;
+        this.note = note;
+    }
 
     public Tense() {
     }
 
-    public Tense(int idTense, String nameTense, String contentTense, String structTense, String signTense) {
+    public Tense(int idTense, String nameTense, String contentTense, String structureTense, String keyUse) {
         this.idTense = idTense;
         this.nameTense = nameTense;
         this.contentTense = contentTense;
-        this.structTense = structTense;
-        this.signTense = signTense;
+        this.structureTense = structureTense;
+        this.keyUse = keyUse;
+
     }
 
     public Tense(String nameTense, String contentTense) {
@@ -47,19 +63,19 @@ public class Tense {
         this.contentTense = contentTense;
     }
 
-    public String getStructTense() {
-        return structTense;
+    public String getStructureTense() {
+        return structureTense;
     }
 
-    public void setStructTense(String structTense) {
-        this.structTense = structTense;
+    public void setStructureTense(String structureTense) {
+        this.structureTense = structureTense;
     }
 
-    public String getSignTense() {
-        return signTense;
+    public String getKeyUse() {
+        return keyUse;
     }
 
-    public void setSignTense(String signTense) {
-        this.signTense = signTense;
+    public void setKeyUse(String keyUse) {
+        this.keyUse = keyUse;
     }
 }

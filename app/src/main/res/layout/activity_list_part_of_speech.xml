@@ -5,11 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBackgroundColor"
-    tools:context=".Page.FlashcardsActivity">
+    tools:context=".Page.ListPartOfSpeechActivity"
+    android:background="@color/mainBackgroundColor">
+
 
     <LinearLayout
-        android:id="@+id/linear1"
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
@@ -31,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ngữ pháp"
+            android:text="Từ loại"
             android:textSize="30sp"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -41,38 +42,20 @@
             />
     </LinearLayout>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/child_frame"
+    <ListView
+        android:id="@+id/list_part_of_speech"
         android:layout_width="0dp"
-        android:layout_height="320dp"
+        android:layout_height="0dp"
+        android:dividerHeight="16dp"
+        android:divider="@color/transparent"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear1">
-
-        <FrameLayout
-            android:id="@+id/card_back"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <include layout="@layout/card_back" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/card_front"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <include layout="@layout/card_front" />
-
-        </FrameLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

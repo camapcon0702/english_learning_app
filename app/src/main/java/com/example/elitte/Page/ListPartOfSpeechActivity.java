@@ -15,7 +15,7 @@ import com.example.elitte.entity.PartOfSpeech;
 
 import java.util.ArrayList;
 
-public class PartOfSpeechActivity extends AppCompatActivity {
+public class ListPartOfSpeechActivity extends AppCompatActivity {
 
     private ListView lvPartOfSpeech;
 
@@ -23,7 +23,7 @@ public class PartOfSpeechActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_part_of_speech);
+        setContentView(R.layout.activity_list_part_of_speech);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ELITTE"
         tools:targetApi="31">
         <activity
-            android:name=".Page.ExercisePage"
+            android:name=".FlashcardsActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Flashcard"
+            android:exported="false">
 
+        </activity>
         <activity
             android:name=".Page.VocabularyPage"
             android:exported="false" />
