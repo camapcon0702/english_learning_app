@@ -41,7 +41,7 @@ public class ClauseActivity extends AppCompatActivity {
         arrayList.add(new Tense("Mệnh đề độc lập", "Mệnh đề độc lập (Independent clauses) là một nhóm từ có chứa một chủ ngữ và một động từ."));
         arrayList.add(new Tense("Mệnh đề độc lập", "Mệnh đề độc lập (Independent clauses) là một nhóm từ có chứa một chủ ngữ và một động từ."));
 
-        TenseAdapter adapter = new TenseAdapter(this, R.layout.activity_tense, arrayList);
+        TenseAdapter adapter = new TenseAdapter(this, R.layout.activity_list_tense, arrayList);
         lvClause.setAdapter(adapter);
     }
 }

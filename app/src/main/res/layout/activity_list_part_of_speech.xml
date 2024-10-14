@@ -5,8 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Page.ClauseActivity"
+    tools:context=".Page.ListPartOfSpeechActivity"
     android:background="@color/mainBackgroundColor">
+
+
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -30,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Mệnh đề"
+            android:text="Từ loại"
             android:textSize="30sp"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -41,7 +43,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/list_clause"
+        android:id="@+id/list_part_of_speech"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:dividerHeight="16dp"
@@ -54,5 +56,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
