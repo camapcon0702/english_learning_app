@@ -1,20 +1,20 @@
 package com.example.elitte.entity;
 
 public class Answer {
-    private String conten;
+    private String content;
     private boolean isCorrect;
 
-    public Answer(String conten, boolean isCorrect) {
-        this.conten = conten;
+    public Answer(String content, boolean isCorrect) {
+        this.content = content;
         this.isCorrect = isCorrect;
     }
 
-    public String getConten() {
-        return conten;
+    public String getContent() {
+        return content;
     }
 
-    public void setConten(String conten) {
-        this.conten = conten;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public boolean isCorrect() {

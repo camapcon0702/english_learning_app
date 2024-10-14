@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Question {
     private int number;
-    private String conten;
+    private String content;
     private List<Answer> answerList;
     private String explain;
 
-    public Question(int number, String conten, List<Answer> answerList, String explain) {
+    public Question(int number, String content, List<Answer> answerList, String explain) {
         this.number = number;
-        this.conten = conten;
+        this.content = content;
         this.answerList = answerList;
         this.explain = explain;
     }
@@ -23,12 +23,12 @@ public class Question {
         this.number = number;
     }
 
-    public String getConten() {
-        return conten;
+    public String getContent() {
+        return content;
     }
 
-    public void setConten(String conten) {
-        this.conten = conten;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public List<Answer> getAnswerList() {

@@ -56,34 +56,42 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
         optionB.setOnClickListener(this);
         optionC.setOnClickListener(this);
         optionD.setOnClickListener(this);
-        
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NextQuestion();
-            }
-        });
+        btnNext.setOnClickListener(this);
     }
 
     private void NextQuestion() {
         currentQuestion++;
-        setDataQuestion(questionList.get(currentQuestion));
+        if (currentQuestion < questionList.size()) {
+            resetOptionsBackground();
+            setDataQuestion(questionList.get(currentQuestion));
+        } else {
+            currentQuestion = 0;
+            resetOptionsBackground();
+            setDataQuestion(questionList.get(currentQuestion));
+        }
+    }
+
+    private void resetOptionsBackground() {
+        optionA.setBackgroundResource(R.drawable.answer_background_default);
+        optionB.setBackgroundResource(R.drawable.answer_background_default);
+        optionC.setBackgroundResource(R.drawable.answer_background_default);
+        optionD.setBackgroundResource(R.drawable.answer_background_default);
     }
 
     private void setDataQuestion(Question question) {
-        if (question == null)
+        if (question == null || question.getAnswerList() == null || question.getAnswerList().size() < 4)
             return;
 
         mQuestion = question;
 
         String nQuestion = "Question " + question.getNumber();
         numberQuestion.setText(nQuestion);
-        contentQuestion.setText(question.getConten());
-        answerA.setText(question.getAnswerList().get(0).getConten());
-        answerB.setText(question.getAnswerList().get(1).getConten());
-        answerC.setText(question.getAnswerList().get(2).getConten());
-        answerD.setText(question.getAnswerList().get(3).getConten());
-
+        contentQuestion.setText(question.getContent());
+        answerA.setText(question.getAnswerList().get(0).getContent());
+        answerB.setText(question.getAnswerList().get(1).getContent());
+        answerC.setText(question.getAnswerList().get(2).getContent());
+        answerD.setText(question.getAnswerList().get(3).getContent());
+        explain.setText("");
 
 
     }
@@ -102,33 +110,42 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
         answerD = findViewById(R.id.answerD);
         explain = findViewById(R.id.explain);
         btnNext = findViewById(R.id.nextButton);
+
     }
 
     private List<Question> getListQuestion() {
         List<Question> list = new ArrayList<>();
 
+        // Câu hỏi 1
         List<Answer> answerList1 = new ArrayList<>();
-        answerList1.add(new Answer("am",false));
-        answerList1.add(new Answer("be",false));
-        answerList1.add(new Answer("is",true));
-        answerList1.add(new Answer("are",false));
+        answerList1.add(new Answer("am", false));
+        answerList1.add(new Answer("be", false));
+        answerList1.add(new Answer("is", true));
+        answerList1.add(new Answer("are", false));
 
-        list.add(new Question(1,"The coffee usually _______ very strong at this café.",answerList1,"Sử dụng động từ \"is\" có thể hiểu là một sự mô tả khách quan về cà phê tại quán. Điều này có thể chỉ ra rằng cà phê được pha chế mạnh mẽ, hoặc thể hiện một đặc điểm chung của cà phê tại quán."));
+        list.add(new Question(1, "The coffee usually _______ very strong at this café.", answerList1,
+                "Sử dụng động từ \"is\" có thể hiểu là một sự mô tả khách quan về cà phê tại quán. Điều này có thể chỉ ra rằng cà phê được pha chế mạnh mẽ, hoặc thể hiện một đặc điểm chung của cà phê tại quán."));
 
+        // Câu hỏi 2
         List<Answer> answerList2 = new ArrayList<>();
-        answerList1.add(new Answer("am",false));
-        answerList1.add(new Answer("is",true));
-        answerList1.add(new Answer("be",false));
-        answerList1.add(new Answer("are",false));
+        answerList2.add(new Answer("am", false));
+        answerList2.add(new Answer("is", true));
+        answerList2.add(new Answer("be", false));
+        answerList2.add(new Answer("are", false));
 
-        list.add(new Question(2,"My sister __________ a talented musician.",answerList2,"Sister là danh từ số ít, chỉ một người."));
+        list.add(new Question(2, "My sister __________ a talented musician.", answerList2,
+                "Sister là danh từ số ít, chỉ một người."));
+
+        // Câu hỏi 3
         List<Answer> answerList3 = new ArrayList<>();
-        answerList1.add(new Answer("have",false));
-        answerList1.add(new Answer("has",true));
-        answerList1.add(new Answer("having",false));
-        answerList1.add(new Answer("had",false));
+        answerList3.add(new Answer("have", false));
+        answerList3.add(new Answer("has", true));
+        answerList3.add(new Answer("having", false));
+        answerList3.add(new Answer("had", false));
 
-        list.add(new Question(3,"She always __________ her lunch at noon.",answerList3,"Đối với ngôi thứ ba số ít, động từ have phải được chia thành has trong thì hiện tại đơn."));
+        list.add(new Question(3, "She always __________ her lunch at noon.", answerList3,
+                "Đối với ngôi thứ ba số ít, động từ have phải được chia thành has trong thì hiện tại đơn."));
+
         return list;
     }
 
@@ -148,6 +165,9 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
             optionD.setBackgroundResource(R.drawable.answer_background_click);
             checkAnswer(optionD,mQuestion,mQuestion.getAnswerList().get(3));
         }
+
+        if(view.getId() == R.id.nextButton)
+            NextQuestion();
 
     }
 
