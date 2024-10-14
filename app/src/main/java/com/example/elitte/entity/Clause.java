@@ -5,6 +5,41 @@ public class Clause {
     private String nameClause;
     private String contentClause;
 
+    public Clause(String nameClause, String structure, String keyUse, String example) {
+        this.nameClause = nameClause;
+        this.structure = structure;
+        this.keyUse = keyUse;
+        this.example = example;
+    }
+
+    public String getStructure() {
+        return structure;
+    }
+
+    public void setStructure(String structure) {
+        this.structure = structure;
+    }
+
+    public String getKeyUse() {
+        return keyUse;
+    }
+
+    public void setKeyUse(String keyUse) {
+        this.keyUse = keyUse;
+    }
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
+    }
+
+    private String structure;
+    private String keyUse;
+    private String example;
+
     public Clause() {
     }
 

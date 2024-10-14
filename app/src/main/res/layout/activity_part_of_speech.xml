@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Page.TenseActivity"
+    tools:context=".Page.PartOfSpeechActivity"
     android:background="@color/mainBackgroundColor">
 
     <LinearLayout
@@ -28,11 +28,11 @@
             android:drawableLeft="@drawable/back_icon"
             />
         <TextView
-            android:id="@+id/header_tense_title"
+            android:id="@+id/header_title_part_of_speech"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Thì hiện tại đơn"
+            android:text="Danh từ"
             android:textSize="30sp"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -57,11 +57,11 @@
         app:layout_constraintTop_toBottomOf="@+id/header">
 
         <TextView
-            android:id="@+id/tense_name"
+            android:id="@+id/part_of_speech_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Thì hiện tại đơn"
+            android:text="Danh từ (Noun)"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -72,40 +72,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:text="Cấu trúc:"
+            android:text="Vị trí trong câu:"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/affirmative_sentences"
+            android:id="@+id/part_of_speech_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:text="(+) S + V(s, es)"
+            android:text="Đứng đầu câu và sau trạng từ chỉ thời gian\nĐứng sau tính từ thường\nĐứng sau các tính từ sở hữu\nĐứng sau động từ khi làm tân ngữ\nĐứng sau 'enough'\nĐứng sau các mạo từ như: a, an, the hoặc các từ chỉ định như this, that, these, those,... \nĐứng sau các từ như each, every, all, both, no, some, any, few, a few, little, a little,...\nĐứng sau giới từ như in, on, of, with, under, about, at,..."
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/negative_sentences"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="(-) S + don't/doesn't + V"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/questions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="(?) Do/Does + S + V"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -113,18 +94,18 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="Cách dùng:"
+            android:text="Dấu hiệu nhận biết:"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tense_key_uses"
+            android:id="@+id/part_of_speech_sign"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:text="Diễn tả một sự thật hiển nhiên, một chân lý. \nDiễn tả 1 hành động xảy ra thường xuyên, một thói quen ở hiện tại. \nDiễn tả một năng lực của con người \nDiễn tả một kế hoạch đã được sắp xếp trong tương lai, đặc biệt là trong việc di chuyển."
+            android:text="Hậu tố: -tion, -sion, -ment, -ce, -ness, -er/or, -ity/ty, -ship, -ics, -dom, -ture, -ism, -phy, -logy, -cy, -an/ian, -ette, -itude, -age, -th, -ry/try, -hood"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -140,35 +121,15 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_example"
+            android:id="@+id/part_of_speech_example"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:text="The sun rises in the East and sets in the West"
+            android:text="car (ô tô)\nlady (người phụ nữ)\nParis (thành phố Paris)"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Dấu hiệu nhận biết:"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/text_signs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="Every day/ week/ month… \nOften, usually, frequently \nSometimes, occasionally \nAlways, constantly \nSeldom, rarely "
-            android:textColor="@color/black"
-            android:textSize="16sp" />
 
     </LinearLayout>
 

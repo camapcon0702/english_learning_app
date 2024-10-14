@@ -3,7 +3,7 @@ package com.example.elitte.entity;
 public class Tense {
     private int idTense;
     private String nameTense;
-    private String contentTense;
+    private String description;
     private String structureTense;
     private String keyUse;
     private String example;
@@ -71,10 +71,10 @@ public class Tense {
         this.sign = sign;
     }
 
-    public Tense(int idTense, String nameTense, String contentTense, String structureTense, String keyUse, String example, String note) {
+    public Tense(int idTense, String nameTense, String description, String structureTense, String keyUse, String example, String note) {
         this.idTense = idTense;
         this.nameTense = nameTense;
-        this.contentTense = contentTense;
+        this.description = description;
         this.structureTense = structureTense;
         this.keyUse = keyUse;
         this.example = example;
@@ -84,18 +84,18 @@ public class Tense {
     public Tense() {
     }
 
-    public Tense(int idTense, String nameTense, String contentTense, String structureTense, String keyUse) {
+    public Tense(int idTense, String nameTense, String description, String structureTense, String keyUse) {
         this.idTense = idTense;
         this.nameTense = nameTense;
-        this.contentTense = contentTense;
+        this.description = description;
         this.structureTense = structureTense;
         this.keyUse = keyUse;
 
     }
 
-    public Tense(String nameTense, String contentTense) {
+    public Tense(String nameTense, String description) {
         this.nameTense = nameTense;
-        this.contentTense = contentTense;
+        this.description = description;
     }
 
     public int getIdTense() {
@@ -114,12 +114,12 @@ public class Tense {
         this.nameTense = nameTense;
     }
 
-    public String getContentTense() {
-        return contentTense;
+    public String getDescription() {
+        return description;
     }
 
-    public void setContentTense(String contentTense) {
-        this.contentTense = contentTense;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStructureTense() {
@@ -137,4 +137,5 @@ public class Tense {
     public void setKeyUse(String keyUse) {
         this.keyUse = keyUse;
     }
+
 }

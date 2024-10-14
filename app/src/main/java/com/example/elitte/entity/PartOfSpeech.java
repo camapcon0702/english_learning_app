@@ -5,6 +5,40 @@ public class PartOfSpeech {
     private String namePoS;
     private String contentPoS;
     private String learnNow;
+    private String position;
+    private String sign;
+    private String example;
+
+    public PartOfSpeech(String namePoS, String position, String sign, String example) {
+        this.namePoS = namePoS;
+        this.position = position;
+        this.sign = sign;
+        this.example = example;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
+    }
 
     public String getLearnNow() {
         return learnNow;
