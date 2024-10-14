@@ -6,8 +6,8 @@
     <color name="headerColor">#FFAD43</color>
     <color name="listViewColor">#FEFEFE</color>
     <color name="dayInWeeColor">#fe9861</color>
-    <color name="correctAnswerColor">#CCA9A9</color>
-    <color name="incorrectAnswerColor">#60b651</color>
+    <color name="correctAnswerColor">#60B651</color>
+    <color name="incorrectAnswerColor">#F75555</color>
     <color name="buttonColor">#ffad43</color>
     <color name="textLink">#0000ff </color>
     <color name="transparent">@android:color/transparent</color>
