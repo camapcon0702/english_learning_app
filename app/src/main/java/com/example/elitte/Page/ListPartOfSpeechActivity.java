@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,13 +23,14 @@ public class ListPartOfSpeechActivity extends AppCompatActivity {
 
     private ListView lvPartOfSpeech;
     ArrayList<PartOfSpeech> arrayList;
+    private TextView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_list_part_of_speech);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.exercise), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -38,6 +40,7 @@ public class ListPartOfSpeechActivity extends AppCompatActivity {
     }
 
     public void addControls() {
+        btnBack = findViewById(R.id.back);
         lvPartOfSpeech = findViewById(R.id.list_part_of_speech);
         arrayList = new ArrayList<>();
         arrayList.add(new PartOfSpeech("Danh từ (Noun)", "Là những từ chỉ người, sự vật, địa điểm hay hiện tượng cụ thể."));
@@ -62,6 +65,13 @@ public class ListPartOfSpeechActivity extends AppCompatActivity {
                 Intent intent = new Intent(ListPartOfSpeechActivity.this, PartOfSpeechActivity.class);
                 intent.putExtra("part_of_speech_name", selectedItem.getNamePoS());
                 startActivity(intent);
+            }
+        });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentBack = new Intent(ListPartOfSpeechActivity.this, GrammarPage.class);
+                startActivity(intentBack);
             }
         });
     }

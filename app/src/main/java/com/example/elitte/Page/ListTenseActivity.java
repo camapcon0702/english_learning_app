@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,13 +23,14 @@ public class ListTenseActivity extends AppCompatActivity {
 
     private ListView lvTense;
     ArrayList<Tense> arrayList;
+    private TextView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_list_tense);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.exercise), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -38,6 +40,7 @@ public class ListTenseActivity extends AppCompatActivity {
     }
 
     public void addControls() {
+        btnBack = findViewById(R.id.back);
         lvTense = findViewById(R.id.list_tense);
         arrayList = new ArrayList<>();
         arrayList.add(new Tense("Thì hiện tại đơn", "Thì hiện tại đơn (Simple Present Tense) dùng để diễn tả một sự thật hiển nhiên hay một hành động diễn ra lặp đi lặp lại theo thói quen, phong tục, khả năng."));
@@ -65,6 +68,14 @@ public class ListTenseActivity extends AppCompatActivity {
                 Intent intent = new Intent(ListTenseActivity.this, TenseActivity.class);
                 intent.putExtra("tense_name", selectedTense.getNameTense());
                 startActivity(intent);
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentBack = new Intent(ListTenseActivity.this, GrammarPage.class);
+                startActivity(intentBack);
             }
         });
     }

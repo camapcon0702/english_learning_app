@@ -26,7 +26,7 @@ public class Flashcard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_flashcard);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.exercise), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -34,7 +34,7 @@ public class Flashcard extends AppCompatActivity {
         findViews();
         loadAnimations();
         changeCameraDistance();
-        View mainLayout = findViewById(R.id.main);  // Hoặc bất kỳ view nào bạn muốn gán click
+        View mainLayout = findViewById(R.id.exercise);  // Hoặc bất kỳ view nào bạn muốn gán click
         mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

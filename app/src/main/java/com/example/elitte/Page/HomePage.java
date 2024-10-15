@@ -35,11 +35,6 @@ public class HomePage extends AppCompatActivity {
 
         addControls();
         addEvents();
-
-
-
-
-
     }
 
     public void addControls(){

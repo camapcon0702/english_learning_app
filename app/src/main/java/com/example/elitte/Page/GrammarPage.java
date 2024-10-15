@@ -2,6 +2,8 @@ package com.example.elitte.Page;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ public class GrammarPage extends AppCompatActivity {
 
     TextView txtBack;
     GridView gridView;
+    List<GridItem> gridItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,7 @@ public class GrammarPage extends AppCompatActivity {
     private void addControls(){
         gridView = findViewById(R.id.gridview);
         txtBack = findViewById(R.id.back);
-        List<GridItem> gridItems = Arrays.asList(
+        gridItems = Arrays.asList(
                 new GridItem(R.drawable.icon_tense, "12 Thì Cơ Bản"),
                 new GridItem(R.drawable.icon_clause, "Mệnh đề"),
                 new GridItem(R.drawable.icon_wordtype, "Từ loại")
@@ -55,6 +58,27 @@ public class GrammarPage extends AppCompatActivity {
         txtBack.setOnClickListener(e -> {
             Intent intent = new Intent(GrammarPage.this, LearningPage.class);
             startActivity(intent);
+        });
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent;
+                switch (i) {
+                    case 0:
+                        intent = new Intent(GrammarPage.this, ListTenseActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(GrammarPage.this, ListClauseActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        intent = new Intent(GrammarPage.this, ListPartOfSpeechActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+            }
         });
     }
 
