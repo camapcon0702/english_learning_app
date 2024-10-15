@@ -13,8 +13,20 @@
         android:theme="@style/Theme.ELITTE"
         tools:targetApi="31">
         <activity
-            android:name=".Page.MiniGamePage"
+            android:name=".Page.ChangePassword"
+            android:exported="false" />
+        <activity
+            android:name=".Page.AccountPage"
             android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Page.MiniGamePage"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,15 +41,10 @@
             android:exported="false" />
         <activity
             android:name=".Page.MainActivity"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true" />
         <activity
             android:name=".Page.LoginPage"
-            android:exported="true">
-        </activity>
-
+            android:exported="true" />
     </application>
 
 </manifest>
