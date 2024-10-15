@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Theme.ELITTE" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowSplashScreenBackground">@color/mainBackgroundColor</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo3</item>
+        <item name="android:windowSplashScreenAnimationDuration">2000</item>
+    </style>
+
+    <style name="Theme.ELITTE" parent="Base.Theme.ELITTE">
+        <item name="android:windowSplashScreenBackground">@color/mainBackgroundColor</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo3</item>
+        <item name="android:windowSplashScreenAnimationDuration">2000</item>
+    </style>
+</resources>

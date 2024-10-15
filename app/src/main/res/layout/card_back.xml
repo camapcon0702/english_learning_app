@@ -5,21 +5,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/component_background">
-
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:padding="16dp"-->
-<!--        android:layout_margin="32dp"-->
-<!--        android:src="@drawable/rectangle"-->
-<!--        app:tint="@color/white" />-->
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="back"
-        android:textColor="@color/black"
-        style="@style/Base.TextAppearance.AppCompat.Display1"
-        android:gravity="center"/>
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txt_card_word_vn_meaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Nông nghiệp "
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/txt_card_word_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/farming"/>
+
+    </LinearLayout>
 
 </FrameLayout>

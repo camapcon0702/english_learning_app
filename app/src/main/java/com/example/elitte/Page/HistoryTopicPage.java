@@ -22,6 +22,7 @@ import java.util.List;
 public class HistoryTopicPage extends AppCompatActivity {
     private GridView gridView;
     private List<HistoryTopic> historyTopicList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

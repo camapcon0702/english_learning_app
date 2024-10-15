@@ -13,12 +13,42 @@
 <!--        android:src="@drawable/rectangle"-->
 <!--        app:tint="@color/white" />-->
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="front"
-        android:textColor="@color/black"
-        style="@style/Base.TextAppearance.AppCompat.Display1"
-        android:gravity="center"/>
+        android:orientation="vertical"
+        android:gravity="center">
 
+        <TextView
+            android:id="@+id/txt_card_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Agricultural "
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txt_card_word_pronunciation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="(ADJ)   /ˌæɡ.rəˈkʌl.tʃɚ.əl/"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txt_card_word_explain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="used for farming or relating to farming"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 </FrameLayout>

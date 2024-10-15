@@ -3,6 +3,7 @@ package com.example.elitte.Page;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.elitte.R;
+import com.example.elitte.fragment.MiniGameFragment;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -20,6 +22,7 @@ public class LoginPage extends AppCompatActivity {
     EditText txtEmail;
     EditText txtMatKhau;
     TextView txtDangKi;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class LoginPage extends AppCompatActivity {
         txtEmail = this.findViewById(R.id.txtEmail);
         txtMatKhau = this.findViewById(R.id.txtMatKhau);
         txtDangKi = this.findViewById(R.id.dang_ky);
+        btnLogin = findViewById(R.id.btnLogin);
     }
 
     private void addEvents(){
@@ -48,6 +52,14 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginPage.this, RegisterPage.class);
+                startActivity(intent);
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginPage.this, NavigationMainActivity.class);
                 startActivity(intent);
             }
         });

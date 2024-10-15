@@ -3,7 +3,6 @@
     <style name="Base.Theme.ELITTE" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
 
-    <style name="Theme.ELITTE" parent="Base.Theme.ELITTE" />
+    </style>
 </resources>

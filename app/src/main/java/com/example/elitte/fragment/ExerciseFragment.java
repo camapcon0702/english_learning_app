@@ -158,7 +158,7 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
 
 
     private void initUI() {
-        numberQuestion = view.findViewById(R.id.numbre_question);
+        numberQuestion = view.findViewById(R.id.number_question);
         contentQuestion = view.findViewById(R.id.question);
         optionA = view.findViewById(R.id.optionA);
         optionB = view.findViewById(R.id.optionB);

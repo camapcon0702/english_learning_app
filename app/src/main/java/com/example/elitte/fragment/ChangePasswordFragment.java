@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.elitte.Page.AccountPage;
 import com.example.elitte.Page.ChangePassword;
@@ -17,13 +19,14 @@ import com.example.elitte.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AccountFragment#newInstance} factory method to
+ * Use the {@link ChangePasswordFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AccountFragment extends Fragment {
+public class ChangePasswordFragment extends Fragment {
 
-    private View view;
-    private TextView changePassword;
+    View view;
+    private TextView back;
+    private Button btnUpdatePassword;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +37,7 @@ public class AccountFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AccountFragment() {
+    public ChangePasswordFragment() {
         // Required empty public constructor
     }
 
@@ -44,11 +47,11 @@ public class AccountFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AccountFragment.
+     * @return A new instance of fragment ChangePasswordFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AccountFragment newInstance(String param1, String param2) {
-        AccountFragment fragment = new AccountFragment();
+    public static ChangePasswordFragment newInstance(String param1, String param2) {
+        ChangePasswordFragment fragment = new ChangePasswordFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,7 +72,7 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.activity_account_page, container, false);
+        view = inflater.inflate(R.layout.activity_change_password, container, false);
 
         addControl();
         addEvent();
@@ -78,21 +81,31 @@ public class AccountFragment extends Fragment {
     }
 
     private void addEvent() {
-        changePassword.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new ChangePasswordFragment();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.account_page, fragment);
-                transaction.commit();
+                backAccountPage();
+            }
+        });
 
-//                Intent intent = new Intent(getActivity(), ChangePassword.class);
-//                startActivity(intent);
+        btnUpdatePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Đã cập nhật mật khẩu", Toast.LENGTH_SHORT).show();
+                backAccountPage();
             }
         });
     }
 
-    private void addControl(){
-        changePassword = view.findViewById(R.id.change_password);
+    private void addControl() {
+        back = view.findViewById(R.id.back);
+        btnUpdatePassword = view.findViewById(R.id.btn_update_password);
+    }
+
+    private void backAccountPage(){
+        Fragment fragment = new AccountFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.account_page, fragment);
+        transaction.commit();
     }
 }

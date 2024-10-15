@@ -113,10 +113,10 @@ public class HomeExerciseFragment extends Fragment {
                 Fragment selectedFragment = null;
                 switch (i) {
                     case 0:
-                        selectedFragment = new ExerciseFragment();
+                        selectedFragment = new TopicsFragment();
                         break;
                     case 1:
-                        selectedFragment = new ExerciseFragment();
+                        selectedFragment = new TopicsFragment();
                         break;
                     default:
                         return;

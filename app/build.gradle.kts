@@ -36,6 +36,8 @@ android {
 
 dependencies {
 
+    implementation(libs.core.splashscreen)
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

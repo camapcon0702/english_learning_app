@@ -12,30 +12,29 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.example.elitte.Data.GridItemAdapterHor;
-import com.example.elitte.Data.HistoryTopicAdapter;
-import com.example.elitte.Page.NavigationMainActivity;
+import com.example.elitte.Data.TopicAdapter;
+import com.example.elitte.Page.TopicPage;
+import com.example.elitte.Page.TopicsPage;
 import com.example.elitte.R;
 import com.example.elitte.entity.Answer;
-import com.example.elitte.entity.GridItem;
-import com.example.elitte.entity.HistoryTopic;
 import com.example.elitte.entity.Question;
 import com.example.elitte.entity.Topic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HistoryFragment#newInstance} factory method to
+ * Use the {@link TopicsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HistoryFragment extends Fragment {
+public class TopicsFragment extends Fragment {
 
     private GridView gridView;
-    private List<HistoryTopic> historyTopicList;
-    private View view;
+    private List<Topic> topicList;
+    View view;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -45,7 +44,7 @@ public class HistoryFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public HistoryFragment() {
+    public TopicsFragment() {
         // Required empty public constructor
     }
 
@@ -55,11 +54,11 @@ public class HistoryFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryFragment.
+     * @return A new instance of fragment TopicsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HistoryFragment newInstance(String param1, String param2) {
-        HistoryFragment fragment = new HistoryFragment();
+    public static TopicsFragment newInstance(String param1, String param2) {
+        TopicsFragment fragment = new TopicsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -80,30 +79,60 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.activity_history_topic_page, container, false);
-
+        view = inflater.inflate(R.layout.activity_topics_page, container, false);
         addControl();
         addEvent();
-
         return view;
     }
 
     private void addEvent() {
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Topic selectedTopic = topicList.get(position);
+
+//                Intent intent = new Intent(TopicsPage.this, TopicPage.class);
+//                intent.putExtra("selected_topic", selectedTopic);
+//                startActivity(intent);
+
+// Tạo một fragment mới
+                Fragment topicPageFragment = new TopicFragment();
+
+// Truyền dữ liệu (selectedTopic) vào Fragment thông qua Bundle
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("selected_topic", selectedTopic);
+                topicPageFragment.setArguments(bundle);
+
+// Thực hiện Fragment Transaction để thay thế fragment hiện tại bằng TopicPageFragment
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, topicPageFragment)  // R.id.fragment_container là ID của container chứa fragment trong layout của bạn
+//                        .addToBackStack(null)  // Thêm vào back stack để có thể quay lại
+//                        .commit();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.home_page, topicPageFragment);
+                transaction.commit();
+
+            }
+        });
     }
 
     private void addControl() {
         gridView = view.findViewById(R.id.gridview);
-        historyTopicList = getHistoryTopicList();
-        if (historyTopicList.isEmpty()) {
+
+        topicList = getTopicList();
+
+        if (topicList.isEmpty()) {
             return;
         }
+        TopicAdapter topicAdapter = new TopicAdapter(getContext(),topicList);
+        gridView.setAdapter(topicAdapter);
 
-        HistoryTopicAdapter adapter = new HistoryTopicAdapter(getContext(), historyTopicList);
-        gridView.setAdapter(adapter);
     }
 
-    private List<HistoryTopic> getHistoryTopicList() {
-        List<HistoryTopic> list = new ArrayList<>();
+    private List<Topic> getTopicList(){
+
+        List<Topic> listTopic = new ArrayList<>();
 
         List<Question> listQuestion1 = new ArrayList<>();
 
@@ -133,7 +162,9 @@ public class HistoryFragment extends Fragment {
 
         listQuestion1.add(new Question(3, "She always __________ her lunch at noon.", answerList3,
                 "Đối với ngôi thứ ba số ít, động từ have phải được chia thành has trong thì hiện tại đơn."));
-        list.add(new HistoryTopic(new Topic(1, listQuestion1), 9));
+
+        listTopic.add(new Topic(1,listQuestion1));
+
         List<Question> listQuestion2 = new ArrayList<>();
 
         listQuestion2.add(new Question(1, "The coffee usually _______ very strong at this café.", answerList1,
@@ -142,7 +173,8 @@ public class HistoryFragment extends Fragment {
                 "Sister là danh từ số ít, chỉ một người."));
         listQuestion2.add(new Question(3, "She always __________ her lunch at noon.", answerList3,
                 "Đối với ngôi thứ ba số ít, động từ have phải được chia thành has trong thì hiện tại đơn."));
-        list.add(new HistoryTopic(new Topic(2, listQuestion2), 5));
-        return list;
+
+        listTopic.add(new Topic(2,listQuestion2));
+        return listTopic;
     }
 }

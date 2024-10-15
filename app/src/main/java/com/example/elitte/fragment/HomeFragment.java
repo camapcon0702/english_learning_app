@@ -146,9 +146,12 @@ public class HomeFragment extends Fragment {
                     case 1:
                         selectedFragment = new HomeExerciseFragment();  // Thay thế bằng Fragment mới
                         break;
-//                    case 2:
-//                        selectedFragment = new FlashcardsFragment();  // Thay thế bằng Fragment mới
-//                        break;
+                    case 2:
+                        selectedFragment = new FlashCardsFragment();  // Thay thế bằng Fragment mới
+                        break;
+                    case 3:
+                        selectedFragment = new MiniGameFragment();
+                        break;
                     default:
                         // Nếu vị trí không hợp lệ, không làm gì
                         return;

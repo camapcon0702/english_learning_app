@@ -6,13 +6,29 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo3"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo6"
         android:supportsRtl="true"
         android:theme="@style/Theme.ELITTE"
         tools:targetApi="tiramisu"
         android:enableOnBackInvokedCallback="true">
+        <activity android:name=".Page.TopicsPage"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".Page.TopicPage"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".Page.HistoryTopicPage"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".Page.ChangePassword"
+            android:exported="true">
+
+        </activity>
         <activity android:name=".Page.LearningPage"
             android:exported="true">
 
@@ -24,11 +40,7 @@
         <activity
             android:name=".Page.NavigationMainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Page.ListClauseActivity"
@@ -48,13 +60,19 @@
             android:exported="false" />
         <activity
             android:name=".Page.ListTenseActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".Page.TenseActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".Page.RegisterPage"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".Page.VocabularyPage"
             android:exported="false" />
@@ -65,10 +83,18 @@
         </activity>
         <activity
             android:name=".Page.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".Page.LoginPage"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -25,10 +25,6 @@ public class FlashcardsActivity extends AppCompatActivity {
     TextView txtBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_flashcards);

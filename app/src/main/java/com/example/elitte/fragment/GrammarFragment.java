@@ -17,22 +17,29 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.elitte.Data.GridItemAdapterHor;
+import com.example.elitte.Page.GrammarPage;
+import com.example.elitte.Page.LearningPage;
+import com.example.elitte.Page.ListClauseActivity;
+import com.example.elitte.Page.ListPartOfSpeechActivity;
+import com.example.elitte.Page.ListTenseActivity;
 import com.example.elitte.Page.NavigationMainActivity;
 import com.example.elitte.R;
 import com.example.elitte.entity.GridItem;
+import com.example.elitte.entity.Tense;
 
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LearningFragment#newInstance} factory method to
+ * Use the {@link GrammarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LearningFragment extends Fragment {
+public class GrammarFragment extends Fragment {
 
     TextView txtBack;
     GridView gridView;
+    List<GridItem> gridItems;
     View view;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -44,7 +51,7 @@ public class LearningFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LearningFragment() {
+    public GrammarFragment() {
         // Required empty public constructor
     }
 
@@ -54,11 +61,11 @@ public class LearningFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LearningFragment.
+     * @return A new instance of fragment GrammarFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LearningFragment newInstance(String param1, String param2) {
-        LearningFragment fragment = new LearningFragment();
+    public static GrammarFragment newInstance(String param1, String param2) {
+        GrammarFragment fragment = new GrammarFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,62 +86,63 @@ public class LearningFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.activity_learning_page, container, false);
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.learning_page), (v, insets) -> {
+        view = inflater.inflate(R.layout.activity_grammar_page, container, false);
+
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.grammar_page), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         addControls();
-        addEvent();
+        addEvents();
 
         return view;
     }
-    private void addControls(){
 
+    private void addControls(){
         gridView = view.findViewById(R.id.gridview);
         txtBack = view.findViewById(R.id.back);
-
-        List<GridItem> gridItems = Arrays.asList(
-                new GridItem(R.drawable.icon_grammar, "Ngữ pháp"),
-                new GridItem(R.drawable.icon_vocabulary, "Từ vựng")
+        gridItems = Arrays.asList(
+                new GridItem(R.drawable.icon_tense, "12 Thì Cơ Bản"),
+                new GridItem(R.drawable.icon_clause, "Mệnh đề"),
+                new GridItem(R.drawable.icon_wordtype, "Từ loại")
         );
-
         GridItemAdapterHor adapterHor = new GridItemAdapterHor(getContext(), gridItems);
-
         gridView.setAdapter(adapterHor);
-
     }
 
-    private void addEvent(){
+    private void addEvents(){
         txtBack.setOnClickListener(e -> {
-            Intent intent = new Intent(getActivity(), NavigationMainActivity.class);
-            startActivity(intent);
+            Fragment fragment = new LearningFragment();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.home_page, fragment);
+            transaction.commit();
         });
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Fragment selectedFragment = null;
-                switch (i){
+                Fragment fragment = null;
+                switch (i) {
                     case 0:
-                        selectedFragment = new GrammarFragment();
+                        fragment = new ListTenseFragment();
                         break;
                     case 1:
-                        selectedFragment = new VocabularyFragment();
+                        fragment = new ListClauseFragment();
                         break;
-                    default:
+                    case 2:
+                        fragment = new ListPartOfSpeechFragment();
                         break;
                 }
-                if (selectedFragment != null){
+                if (fragment != null) {
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.home_page, selectedFragment);
+                    transaction.replace(R.id.home_page, fragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
                 }
             }
         });
-
     }
+
 }
