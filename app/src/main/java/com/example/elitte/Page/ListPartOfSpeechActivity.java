@@ -1,6 +1,9 @@
 package com.example.elitte.Page;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 public class ListPartOfSpeechActivity extends AppCompatActivity {
 
     private ListView lvPartOfSpeech;
+    ArrayList<PartOfSpeech> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +33,13 @@ public class ListPartOfSpeechActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        addControls();
+        addEvents();
+    }
 
+    public void addControls() {
         lvPartOfSpeech = findViewById(R.id.list_part_of_speech);
-        ArrayList<PartOfSpeech> arrayList = new ArrayList<>();
+        arrayList = new ArrayList<>();
         arrayList.add(new PartOfSpeech("Danh từ (Noun)", "Là những từ chỉ người, sự vật, địa điểm hay hiện tượng cụ thể."));
         arrayList.add(new PartOfSpeech("Động từ (Verb)", "Những từ chỉ hành động và trạng thái của một người, sự vật hay hiện tượng nào đó."));
         arrayList.add(new PartOfSpeech("Tính từ (Adjective)", "Những từ chỉ tính chất, đặc điểm của người, vật hay hiện tượng."));
@@ -44,5 +52,17 @@ public class ListPartOfSpeechActivity extends AppCompatActivity {
 
         PartOfSpeechAdapter adapter = new PartOfSpeechAdapter(this, R.layout.part_of_speech_item, arrayList);
         lvPartOfSpeech.setAdapter(adapter);
+    }
+
+    public void addEvents() {
+        lvPartOfSpeech.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                PartOfSpeech selectedItem = arrayList.get(i);
+                Intent intent = new Intent(ListPartOfSpeechActivity.this, PartOfSpeechActivity.class);
+                intent.putExtra("part_of_speech_name", selectedItem.getNamePoS());
+                startActivity(intent);
+            }
+        });
     }
 }

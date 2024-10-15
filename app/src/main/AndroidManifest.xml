@@ -12,12 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ELITTE"
         tools:targetApi="31">
-        <activity
-            android:name=".Page.ChangePassword"
-            android:exported="false" />
-        <activity
-            android:name=".Page.AccountPage"
-            android:exported="true" >
+        <activity android:name=".Page.ListClauseActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,13 +21,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Page.MiniGamePage"
+            android:name=".Page.ClauseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Page.ListPartOfSpeechActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Page.PartOfSpeechActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Page.ListTenseActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".Page.TenseActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".Page.RegisterPage"
+            android:exported="true">
+
         </activity>
         <activity
             android:name=".Page.VocabularyPage"
@@ -41,10 +54,14 @@
             android:exported="false" />
         <activity
             android:name=".Page.MainActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".Page.LoginPage"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>

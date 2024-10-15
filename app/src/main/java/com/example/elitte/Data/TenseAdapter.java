@@ -45,7 +45,7 @@ public class TenseAdapter extends ArrayAdapter<Tense> {
         }
         Tense tense = arrayTense.get(position);
         viewHolder.txtTenseName.setText(tense.getNameTense());
-        viewHolder.txtTenseContent.setText(tense.getContentTense());
+        viewHolder.txtTenseContent.setText(tense.getDescription());
         viewHolder.txtLearnNow.setText("Học ngay");
         viewHolder.txtLearnNow.setPaintFlags(viewHolder.txtLearnNow.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         return convertView;
