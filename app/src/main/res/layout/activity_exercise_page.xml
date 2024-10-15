@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/nextButton">
         <TextView
-            android:id="@+id/numbre_question"
+            android:id="@+id/number_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Question: 1"
