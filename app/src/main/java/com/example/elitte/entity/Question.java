@@ -1,8 +1,12 @@
 package com.example.elitte.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Question {
+public class Question implements Parcelable {
     private int number;
     private String content;
     private List<Answer> answerList;
@@ -15,35 +19,51 @@ public class Question {
         this.explain = explain;
     }
 
-    public int getNumber() {
-        return number;
+    protected Question(Parcel in) {
+        number = in.readInt();
+        content = in.readString();
+        answerList = in.createTypedArrayList(Answer.CREATOR);
+        explain = in.readString();
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public static final Creator<Question> CREATOR = new Creator<Question>() {
+        @Override
+        public Question createFromParcel(Parcel in) {
+            return new Question(in);
+        }
+
+        @Override
+        public Question[] newArray(int size) {
+            return new Question[size];
+        }
+    };
+
+    public int getNumber() {
+        return number;
     }
 
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public List<Answer> getAnswerList() {
         return answerList;
-    }
-
-    public void setAnswerList(List<Answer> answerList) {
-        this.answerList = answerList;
     }
 
     public String getExplain() {
         return explain;
     }
 
-    public void setExplain(String explain) {
-        this.explain = explain;
+    @Override
+    public int describeContents() {
+        return 0; // Không sử dụng
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(number);
+        dest.writeString(content);
+        dest.writeTypedList(answerList);
+        dest.writeString(explain);
     }
 }

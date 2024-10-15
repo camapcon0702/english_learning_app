@@ -1,5 +1,6 @@
 package com.example.elitte.Page;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -29,6 +30,7 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
     private List<Question> questionList;
     private Question mQuestion;
     private int currentQuestion = 0;
+    private TextView back;
 
 
     @Override
@@ -57,6 +59,7 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
         optionC.setOnClickListener(this);
         optionD.setOnClickListener(this);
         btnNext.setOnClickListener(this);
+        back.setOnClickListener(this);
     }
 
     private void NextQuestion() {
@@ -98,7 +101,7 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
 
 
     private void initUI() {
-        numberQuestion = findViewById(R.id.numbre_question);
+        numberQuestion = findViewById(R.id.number_question);
         contentQuestion = findViewById(R.id.question);
         optionA = findViewById(R.id.optionA);
         optionB = findViewById(R.id.optionB);
@@ -110,43 +113,13 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
         answerD = findViewById(R.id.answerD);
         explain = findViewById(R.id.explain);
         btnNext = findViewById(R.id.nextButton);
+        back = findViewById(R.id.back);
 
     }
 
     private List<Question> getListQuestion() {
-        List<Question> list = new ArrayList<>();
-
-        // Câu hỏi 1
-        List<Answer> answerList1 = new ArrayList<>();
-        answerList1.add(new Answer("am", false));
-        answerList1.add(new Answer("be", false));
-        answerList1.add(new Answer("is", true));
-        answerList1.add(new Answer("are", false));
-
-        list.add(new Question(1, "The coffee usually _______ very strong at this café.", answerList1,
-                "Sử dụng động từ \"is\" có thể hiểu là một sự mô tả khách quan về cà phê tại quán. Điều này có thể chỉ ra rằng cà phê được pha chế mạnh mẽ, hoặc thể hiện một đặc điểm chung của cà phê tại quán."));
-
-        // Câu hỏi 2
-        List<Answer> answerList2 = new ArrayList<>();
-        answerList2.add(new Answer("am", false));
-        answerList2.add(new Answer("is", true));
-        answerList2.add(new Answer("be", false));
-        answerList2.add(new Answer("are", false));
-
-        list.add(new Question(2, "My sister __________ a talented musician.", answerList2,
-                "Sister là danh từ số ít, chỉ một người."));
-
-        // Câu hỏi 3
-        List<Answer> answerList3 = new ArrayList<>();
-        answerList3.add(new Answer("have", false));
-        answerList3.add(new Answer("has", true));
-        answerList3.add(new Answer("having", false));
-        answerList3.add(new Answer("had", false));
-
-        list.add(new Question(3, "She always __________ her lunch at noon.", answerList3,
-                "Đối với ngôi thứ ba số ít, động từ have phải được chia thành has trong thì hiện tại đơn."));
-
-        return list;
+        List<Question> list = getIntent().getParcelableArrayListExtra("listQuestion");
+        return list ;
     }
 
 
@@ -168,7 +141,10 @@ public class ExercisePage extends AppCompatActivity implements View.OnClickListe
 
         if(view.getId() == R.id.nextButton)
             NextQuestion();
-
+        if(view.getId() == R.id.back){
+            Intent intent = new Intent(ExercisePage.this,TopicPage.class);
+            startActivity(intent);
+        }
     }
 
     private void checkAnswer(LinearLayout linearLayout, Question question, Answer answer){
