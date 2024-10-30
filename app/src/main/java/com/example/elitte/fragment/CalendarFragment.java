@@ -1,14 +1,25 @@
 package com.example.elitte.fragment;
 
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.elitte.Page.MainActivity;
 import com.example.elitte.R;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +28,16 @@ import com.example.elitte.R;
  */
 public class CalendarFragment extends Fragment {
 
+    EditText alarmLabel;
+    EditText timeHour;
+    EditText timeMinute;
+    Button setTime;
+    Button setAlarm;
+    TimePickerDialog timePickerDialog;
+    Calendar calendar;
+    int currentHour;
+    int currentMinute;
+    View view;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,6 +82,67 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        
+        addControls();
+        addEvents();
+
+        alarmLabel = view.findViewById(R.id.eLabel);
+        timeHour = view.findViewById(R.id.etHour);
+        timeMinute = view.findViewById(R.id.etMinute);
+        setTime = view.findViewById(R.id.btnTime);
+        setAlarm = view.findViewById(R.id.btnAlarm);
+
+        setTime.setOnClickListener((v) -> {
+            calendar = Calendar.getInstance();
+            currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+            currentMinute = calendar.get(Calendar.MINUTE);
+
+            timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                    timeHour.setText(String.format("%02d", hourOfDay));
+                    timeMinute.setText(String.format("%02d", minutes));
+                }
+            }, currentHour, currentMinute, false);
+
+            timePickerDialog.show();
+        });
+
+        setAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!timeHour.getText().toString().isEmpty() && !timeMinute.getText().toString().isEmpty()){
+
+
+//-------------------------1st Alarm---------------------------------------
+                    Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+                    intent.putExtra(AlarmClock.EXTRA_HOUR, Integer.parseInt(timeHour.getText().toString()));
+                    intent.putExtra(AlarmClock.EXTRA_MINUTES, Integer.parseInt(timeMinute.getText().toString()));
+                    intent.putExtra(AlarmClock.EXTRA_MESSAGE, alarmLabel.getText());
+//--------------------------End----------------------------------------------
+
+
+                    if(intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                        startActivity(intent);
+                        requireActivity().finish();
+
+                    }else{
+                        Toast.makeText(getContext(), "There is no app that support this action", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(),"Please choose a time", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        
+        return view;
+    }
+
+    private void addEvents() {
+    }
+
+    private void addControls() {
+        
     }
 }

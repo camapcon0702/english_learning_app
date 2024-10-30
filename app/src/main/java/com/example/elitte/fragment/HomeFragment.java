@@ -152,6 +152,9 @@ public class HomeFragment extends Fragment {
                     case 3:
                         selectedFragment = new MiniGameFragment();
                         break;
+                    case 4:
+                        selectedFragment = new CalendarFragment();
+                        break;
                     default:
                         // Nếu vị trí không hợp lệ, không làm gì
                         return;

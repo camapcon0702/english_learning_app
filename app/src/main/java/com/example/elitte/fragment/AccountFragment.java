@@ -85,9 +85,6 @@ public class AccountFragment extends Fragment {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.account_page, fragment);
                 transaction.commit();
-
-//                Intent intent = new Intent(getActivity(), ChangePassword.class);
-//                startActivity(intent);
             }
         });
     }

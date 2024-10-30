@@ -42,7 +42,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/tense_layout"
+        android:id="@+id/content_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -54,10 +54,92 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header">
-        <ImageView
-            android:layout_width="wrap_content"
+
+        <TextView
+            android:id="@+id/clause_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/calendarcontent"/>
+            android:layout_margin="16dp"
+            android:text="Nội dung:"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/eLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginStart="16dp"
+            android:hint="Nội dung nhắc nhở"
+            android:inputType="text"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/Time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Thời gian:"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/etHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginStart="16dp"
+            android:hint="Giờ"
+            android:inputType="text"
+            android:textSize="20sp" />
+        <EditText
+            android:id="@+id/etMinute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Phút"
+            android:layout_marginStart="16dp"
+            android:inputType="textPersonName"
+            android:textSize="20sp" />
+
+
+
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/content_layout"
+        app:layout_constraintStart_toStartOf="@+id/content_layout"
+        app:layout_constraintTop_toBottomOf="@+id/content_layout">
+
+        <Button
+            android:id="@+id/btnTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_background"
+            android:padding="15dp"
+            android:text="Đặt giờ" />
+
+        <Button
+            android:id="@+id/btnAlarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_background"
+            android:padding="15dp"
+            android:text="Lưu" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
