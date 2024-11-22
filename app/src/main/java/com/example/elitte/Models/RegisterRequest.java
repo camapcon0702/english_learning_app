@@ -8,6 +8,17 @@ public class RegisterRequest {
     private String password;
     private String confirmPassword;
 
+    public RegisterRequest(){
+
+    }
+
+    public RegisterRequest(String firstName, String lastName, String email, String password, String confirmPassword) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
 
     public String getPassword() {
         return password;
