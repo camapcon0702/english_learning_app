@@ -31,7 +31,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
+
+
 }
 
 dependencies {
@@ -47,4 +50,19 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    val lifecycle_version = "2.6.2"
+
+    // viewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
+    // liveData
+    implementation("androidx.lifecycle:lifecycle-livedata:$lifecycle_version")
+
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
+    implementation ("com.google.code.gson:gson:2.10.1")
+
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +14,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.elitte.JWT.TokenManager;
+import com.example.elitte.Models.LoginRequest;
+import com.example.elitte.Models.LoginResponse;
 import com.example.elitte.R;
+import com.example.elitte.Retrofit.AuthApi;
+import com.example.elitte.Retrofit.RetrofitInstance;
+import com.example.elitte.fragment.HomeFragment;
 import com.example.elitte.fragment.MiniGameFragment;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -56,12 +67,38 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(v -> loginUser());
+
+    }
+
+    private void loginUser(){
+        String email = txtEmail.getText().toString().trim();
+        String password = txtMatKhau.getText().toString();
+        LoginRequest loginRequest = new LoginRequest(email, password);
+        AuthApi authApi = RetrofitInstance.getRetrofitInstance().create(AuthApi.class);
+        authApi.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this, NavigationMainActivity.class);
-                startActivity(intent);
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String token = response.body().getToken();
+                    TokenManager.saveToken(LoginPage.this, token);
+
+                    Intent intent = new Intent(LoginPage.this, NavigationMainActivity.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(LoginPage.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Toast.makeText(LoginPage.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
+
 }
