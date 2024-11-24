@@ -17,11 +17,12 @@
         android:padding="20dp">
 
         <TextView
+            android:id="@+id/welcome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="10dp"
-            android:text="Hi! Bro"
+            android:text="Hi! Con cac"
             android:textStyle="bold"
             android:textSize="32sp"
             android:layout_gravity="center" />

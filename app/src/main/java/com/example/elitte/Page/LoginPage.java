@@ -71,34 +71,81 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    private void loginUser(){
-        String email = txtEmail.getText().toString().trim();
-        String password = txtMatKhau.getText().toString();
-        LoginRequest loginRequest = new LoginRequest(email, password);
-        AuthApi authApi = RetrofitInstance.getRetrofitInstance().create(AuthApi.class);
-        authApi.login(loginRequest).enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    String token = response.body().getToken();
-                    TokenManager.saveToken(LoginPage.this, token);
+//    private void loginUser(){
+//        String email = txtEmail.getText().toString().trim();
+//        String password = txtMatKhau.getText().toString();
+//        LoginRequest loginRequest = new LoginRequest(email, password);
+//        AuthApi authApi = RetrofitInstance.getRetrofitInstance().create(AuthApi.class);
+//        authApi.login(loginRequest).enqueue(new Callback<LoginResponse>() {
+//            @Override
+//            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+//                if (response.isSuccessful() && response.body() != null) {
+//                    String token = response.body().getToken();
+//                    TokenManager.saveToken(LoginPage.this, token);
+//
+//                    Intent intent = new Intent(LoginPage.this, NavigationMainActivity.class);
+//                    startActivity(intent);
+//
+//                } else {
+//                    Toast.makeText(LoginPage.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LoginResponse> call, Throwable t) {
+//                Toast.makeText(LoginPage.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//
+//    }
+private void loginUser() {
+    String email = txtEmail.getText().toString().trim();
+    String password = txtMatKhau.getText().toString().trim();
 
-                    Intent intent = new Intent(LoginPage.this, NavigationMainActivity.class);
-                    startActivity(intent);
-
-                } else {
-                    Toast.makeText(LoginPage.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginPage.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+    if (email.isEmpty() || password.isEmpty()) {
+        Toast.makeText(this, "Email và mật khẩu không được để trống", Toast.LENGTH_SHORT).show();
+        return;
     }
 
+    LoginRequest loginRequest = new LoginRequest(email, password);
+
+    btnLogin.setEnabled(false);
+
+    btnLogin.setText("Đang đăng nhập...");
+
+    AuthApi authApi = RetrofitInstance.getRetrofitInstance(null).create(AuthApi.class);
+    authApi.login(loginRequest).enqueue(new Callback<LoginResponse>() {
+        @Override
+        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            btnLogin.setEnabled(true);
+            btnLogin.setText("Đăng nhập");
+
+            if (response.isSuccessful() && response.body() != null) {
+                String token = response.body().getToken();
+                TokenManager.saveToken(LoginPage.this, token);
+
+                AuthApi authApiWithToken = RetrofitInstance.getRetrofitInstance(token).create(AuthApi.class);
+
+                Intent intent = new Intent(LoginPage.this, NavigationMainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                if (response.code() == 401) {
+                    Toast.makeText(LoginPage.this, "Sai email hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginPage.this, "Lỗi: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call<LoginResponse> call, Throwable t) {
+            btnLogin.setEnabled(true);
+            btnLogin.setText("Đăng nhập");
+            Toast.makeText(LoginPage.this, "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    });
+}
 }

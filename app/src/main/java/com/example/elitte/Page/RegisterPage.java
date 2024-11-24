@@ -77,7 +77,7 @@ public class RegisterPage extends AppCompatActivity {
         String confirmMatKhau = txtConfirmMatKhau.getText().toString();
 
         RegisterRequest registerRequest = new RegisterRequest(ten, ho, email, matKhau, confirmMatKhau);
-        AuthApi authApi = RetrofitInstance.getRetrofitInstance().create(AuthApi.class);
+        AuthApi authApi = RetrofitInstance.getRetrofitInstance(null).create(AuthApi.class);
         authApi.register(registerRequest).enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {

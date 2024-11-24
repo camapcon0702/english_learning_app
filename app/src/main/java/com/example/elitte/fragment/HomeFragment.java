@@ -9,18 +9,30 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.elitte.Data.GridItemAdapterVer;
+import com.example.elitte.JWT.TokenManager;
+import com.example.elitte.Models.LoginResponse;
+import com.example.elitte.Models.UserResponse;
 import com.example.elitte.R;
+import com.example.elitte.Retrofit.AuthApi;
+import com.example.elitte.Retrofit.RetrofitInstance;
+import com.example.elitte.Retrofit.UserAPI;
 import com.example.elitte.entity.GridItem;
 
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +45,8 @@ public class HomeFragment extends Fragment {
     View view;
     private ViewPager2 viewPager;
 //    private View mView;
+
+    TextView txtWelcome;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -95,6 +109,9 @@ public class HomeFragment extends Fragment {
     public void addControls(){
 
         gridView = view.findViewById(R.id.gridview);
+        txtWelcome = view.findViewById(R.id.welcome);
+        welcomeUser();
+
 
         List<GridItem> gridItems = Arrays.asList(
                 new GridItem(R.drawable.icon_learning, "Học tập"),
@@ -172,4 +189,32 @@ public class HomeFragment extends Fragment {
         });
     }
 
+
+    public void welcomeUser() {
+        String token = TokenManager.getToken(getContext()); // Lấy token từ SharedPreferences
+        System.out.println(token);
+        if (token == null) {
+            Log.e("WelcomeUser", "Token not found");
+            return;
+        }
+
+        UserAPI userAPI = RetrofitInstance.getRetrofitInstance(token).create(UserAPI.class);
+        userAPI.getUserProfile().enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse user = response.body();
+
+                    txtWelcome.setText("Hi " + user.getFirstName());
+                } else {
+                    Log.e("WelcomeUser", "Failed to fetch user profile");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.e("WelcomeUser", "Error fetching user profile: " + t.getMessage());
+            }
+        });
+    }
 }
