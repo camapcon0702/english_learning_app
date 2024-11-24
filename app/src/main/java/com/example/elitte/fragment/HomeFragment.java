@@ -191,7 +191,7 @@ public class HomeFragment extends Fragment {
 
 
     public void welcomeUser() {
-        String token = TokenManager.getToken(getContext()); // Lấy token từ SharedPreferences
+        String token = TokenManager.getToken(getContext());
         System.out.println(token);
         if (token == null) {
             Log.e("WelcomeUser", "Token not found");

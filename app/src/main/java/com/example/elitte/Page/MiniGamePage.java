@@ -13,12 +13,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import com.example.elitte.JWT.TokenManager;
+import com.example.elitte.Models.ListMiniGame;
 import com.example.elitte.R;
+import com.example.elitte.Retrofit.MiniGameAPI;
+import com.example.elitte.Retrofit.RetrofitInstance;
 import com.example.elitte.entity.MiniGameQuestion;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MiniGamePage extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,6 +41,9 @@ public class MiniGamePage extends AppCompatActivity implements View.OnClickListe
     private MiniGameQuestion mMiniGameQuestion;
     private int correctAnswerCount = 0;
     private int currentQuestion = 0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,4 +136,42 @@ public class MiniGamePage extends AppCompatActivity implements View.OnClickListe
             btnSkip.setEnabled(false);
         }
     }
+
+    private LiveData<ListMiniGame> getMiniGamesFromApi() {
+        MiniGameAPI miniGameAPI;
+        String token = TokenManager.getToken(this);
+        miniGameAPI = new RetrofitInstance().getRetrofitInstance(token).create(MiniGameAPI.class);
+
+        MutableLiveData<ListMiniGame> data = new MutableLiveData<>();
+
+
+        Call<ListMiniGame> response = miniGameAPI.getListMinigamme();
+
+        response.enqueue(new Callback<ListMiniGame>() {
+            @Override
+            public void onResponse(Call<ListMiniGame> call, Response<ListMiniGame> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ListMiniGame list = response.body();
+                    data.setValue(list);
+                } else {
+                    Log.e("getMiniGamesFromApi", "API Response Failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ListMiniGame> call, Throwable t) {
+                Log.e("getMiniGamesFromApi", "API Call Failed: " + t.getMessage());
+            }
+        });
+
+        return data;
+    }
+
+
+
+
 }
+
+
+
+
