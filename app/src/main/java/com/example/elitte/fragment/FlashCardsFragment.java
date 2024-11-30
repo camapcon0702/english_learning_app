@@ -9,16 +9,35 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.elitte.JWT.TokenManager;
+import com.example.elitte.Models.FlashCard;
+import com.example.elitte.Models.ListFlashCard;
+import com.example.elitte.Models.MiniGame;
 import com.example.elitte.Page.FlashcardsActivity;
 import com.example.elitte.Page.HomePage;
 import com.example.elitte.Page.NavigationMainActivity;
 import com.example.elitte.R;
+import com.example.elitte.Retrofit.FlashCardAPI;
+import com.example.elitte.Retrofit.RetrofitInstance;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,8 +51,24 @@ public class FlashCardsFragment extends Fragment {
     private boolean mIsBackVisible = false;
     private View mCardFrontLayout;
     private View mCardBackLayout;
+    private ListFlashCard listFlashCard;
+    private int currentIndex = 0;
     TextView txtBack;
     View view;
+    Button btnTiepTheo;
+    private MutableLiveData<List<FlashCard>> liveFlashCardList = new MutableLiveData<>();
+
+    // CardBack
+
+
+    // CardFront
+    TextView tuVung, phienAm, viDu;
+//    ImageButton btnAmThanh;
+    // CardBack
+    TextView nghiaCuaTu;
+    ImageView hinhAnh;
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,6 +134,10 @@ public class FlashCardsFragment extends Fragment {
         addControls();
         addEvents();
 
+        // Fetch and observe data
+        fetchFlashCardFromAPI();
+        observeFlashCardList();
+
         return view;
     }
 
@@ -117,6 +156,7 @@ public class FlashCardsFragment extends Fragment {
     private void findViews() {
         mCardBackLayout = view.findViewById(R.id.card_back);
         mCardFrontLayout = view.findViewById(R.id.card_front);
+
     }
 
     public void flipCard(View view) {
@@ -139,6 +179,16 @@ public class FlashCardsFragment extends Fragment {
 
     private void addControls(){
         txtBack = view.findViewById(R.id.back);
+        btnTiepTheo = view.findViewById(R.id.btn_reply);
+        //cardfront
+        tuVung = view.findViewById(R.id.txt_card_word);
+        phienAm = view.findViewById(R.id.txt_card_word_pronunciation);
+        viDu = view.findViewById(R.id.txt_card_word_explain);
+//        btnAmThanh = view.findViewById(R.id.icon_sound);
+        //cardback
+        nghiaCuaTu = view.findViewById(R.id.txt_card_word_vn_meaning);
+        hinhAnh = view.findViewById(R.id.txt_card_word_image);
+
 
     }
 
@@ -147,6 +197,77 @@ public class FlashCardsFragment extends Fragment {
             Intent intent = new Intent(getActivity(), NavigationMainActivity.class);
             startActivity(intent);
         });
+        btnTiepTheo.setOnClickListener(e -> {
+            moveToTheNextFlashCard(liveFlashCardList.getValue());
+        });
     }
+
+    private void fetchFlashCardFromAPI() {
+        String token = TokenManager.getToken(getContext());
+        FlashCardAPI api = RetrofitInstance.getRetrofitInstance(token).create(FlashCardAPI.class);
+        Call<ListFlashCard> call = api.getAllFlashCards();
+
+        call.enqueue(new Callback<ListFlashCard>() {
+            @Override
+            public void onResponse(Call<ListFlashCard> call, Response<ListFlashCard> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<FlashCard> flashCards = response.body();
+                    liveFlashCardList.postValue(flashCards);
+                    Log.d("FlashCardAPI", "Fetched " + flashCards.size() + " flashcards");
+                } else {
+                    Log.e("FlashCardAPI", "Error: " + response.code());
+                    Toast.makeText(getContext(), "Lỗi khi tải Flashcards!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ListFlashCard> call, Throwable t) {
+                Log.e("FlashCardAPI", "Failed to load Flashcards: " + t.getMessage());
+                Toast.makeText(getContext(), "Lỗi kết nối API!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void observeFlashCardList() {
+        liveFlashCardList.observe(getViewLifecycleOwner(), flashCards -> {
+            if (flashCards != null && !flashCards.isEmpty()) {
+                updateFlashCardUI(flashCards.get(0));
+            } else {
+                Toast.makeText(getContext(), "Không có Flashcards nào!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateFlashCardUI(FlashCard flashCard) {
+
+        tuVung.setText(flashCard.getTuVung());
+
+
+        phienAm.setText(flashCard.getPhienAm());
+
+
+        viDu.setText(flashCard.getCachDung());
+
+
+        nghiaCuaTu.setText(flashCard.getDichNghia());
+
+
+        int imageResId = getResources().getIdentifier(flashCard.getHinhAnh(), "drawable", getContext().getPackageName());
+        if (imageResId != 0) {
+            hinhAnh.setImageResource(imageResId);
+        } else {
+            Toast.makeText(getContext(), "Hình ảnh không tìm thấy!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void moveToTheNextFlashCard(List<FlashCard> flashCards) {
+        if (flashCards != null && !flashCards.isEmpty()) {
+            currentIndex = (currentIndex + 1) % flashCards.size();
+            updateFlashCardUI(flashCards.get(currentIndex));
+        }
+    }
+
 
 }
