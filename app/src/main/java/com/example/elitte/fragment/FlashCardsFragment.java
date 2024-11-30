@@ -3,6 +3,7 @@ package com.example.elitte.fragment;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.core.graphics.Insets;
@@ -11,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +65,7 @@ public class FlashCardsFragment extends Fragment {
 
     // CardFront
     TextView tuVung, phienAm, viDu;
-//    ImageButton btnAmThanh;
+    ImageButton btnAmThanh;
     // CardBack
     TextView nghiaCuaTu;
     ImageView hinhAnh;
@@ -184,7 +186,7 @@ public class FlashCardsFragment extends Fragment {
         tuVung = view.findViewById(R.id.txt_card_word);
         phienAm = view.findViewById(R.id.txt_card_word_pronunciation);
         viDu = view.findViewById(R.id.txt_card_word_explain);
-//        btnAmThanh = view.findViewById(R.id.icon_sound);
+        btnAmThanh = view.findViewById(R.id.icon_sound);
         //cardback
         nghiaCuaTu = view.findViewById(R.id.txt_card_word_vn_meaning);
         hinhAnh = view.findViewById(R.id.txt_card_word_image);
@@ -251,6 +253,26 @@ public class FlashCardsFragment extends Fragment {
 
 
         nghiaCuaTu.setText(flashCard.getDichNghia());
+
+
+        btnAmThanh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String soundFileName = flashCard.getAmThanh();
+                int soundResId = getResources().getIdentifier(soundFileName, "raw", getContext().getPackageName());
+
+                if (soundResId != 0) {
+
+                    MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), soundResId);
+                    mediaPlayer.start();
+
+                    mediaPlayer.setOnCompletionListener(mp -> mp.release());
+                } else {
+
+                    Toast.makeText(getContext(), "Không tìm thấy tệp âm thanh!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
         int imageResId = getResources().getIdentifier(flashCard.getHinhAnh(), "drawable", getContext().getPackageName());
