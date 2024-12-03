@@ -235,7 +235,7 @@ public class HomeExerciseFragment extends Fragment {
             if (iconRes == 0) {
 
             }
-            gridItems.add(new GridItem(iconRes, type.getNameOfExamSet()));
+            gridItems.add(new GridItem(iconRes, type.getNameOfExamSet(), type.getId()));
         }
         adapterHor = new GridItemAdapterHor(getContext(), gridItems);
         gridView.setAdapter(adapterHor);
@@ -245,32 +245,34 @@ public class HomeExerciseFragment extends Fragment {
         return getResources().getIdentifier(imageName, "drawable", getContext().getPackageName());
     }
 
-    private void addEvents() {
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Fragment selectedFragment = null;
-                switch (i) {
-                    case 0:
-                    case 1:
-                        selectedFragment = new TopicsFragment();
-                        break;
-                    default:
-                        return;
-                }
-                if (selectedFragment != null) {
+//
+        private void addEvents() {
+
+            gridView.setOnItemClickListener((adapterView, view, i, l) -> {
+                GridItem selectedItem = gridItems.get(i);
+
+                if (selectedItem.getId() != null) {
+                    int selectedId = selectedItem.getId();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("examSetId", selectedId);
+
+                    TopicsFragment topicsFragment = new TopicsFragment();
+                    topicsFragment.setArguments(bundle);
+
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.home_page, selectedFragment);
+                    transaction.replace(R.id.home_page, topicsFragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
+                } else {
+                    Toast.makeText(getContext(), "ID không tồn tại.", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
+            });
 
-        txtBack.setOnClickListener(e -> {
-            Intent intent = new Intent(getActivity(), NavigationMainActivity.class);
-            startActivity(intent);
-        });
-    }
+            txtBack.setOnClickListener(e -> {
+                Intent intent = new Intent(getActivity(), NavigationMainActivity.class);
+                startActivity(intent);
+            });
+        }
+
 }
 

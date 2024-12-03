@@ -26,6 +26,19 @@
             android:text="Quay lại"
             android:drawableLeft="@drawable/back_icon"
             />
+
+        <TextView
+            android:id="@+id/diem"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="Điểm Số: 0"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+
+            tools:ignore="RtlCompat" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"
@@ -54,6 +67,15 @@
             android:textSize="20sp"
             android:layout_marginTop="10dp"
             />
+        <ImageButton
+            android:id="@+id/amThanh"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_sound"
+            >
+
+
+        </ImageButton>
         <LinearLayout
             android:id="@+id/optionA"
             android:layout_width="match_parent"
