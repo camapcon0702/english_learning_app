@@ -128,43 +128,22 @@ public class HomeFragment extends Fragment {
     }
 
     public void addEvents(){
-        // set sự kiện khi nhấn vào từng item
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                switch (position) {
-//                    case 0:
-//                        Intent intent = new Intent(getActivity(), LearningPage.class);
-//                        startActivity(intent);
-//                        break;
-//                    case 1:
-//                        Intent intent1 = new Intent(getActivity(), HomeExercisePage.class);
-//                        startActivity(intent1);
-//                        break;
-//                    case 2:
-//                        Intent intent2 = new Intent(getActivity(), FlashcardsActivity.class);
-//                        startActivity(intent2);
-//                        break;
-//
-//                }
-//            }
-//        });
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Fragment selectedFragment = null;
 
-                // Tạo một Fragment mới dựa trên vị trí nhấn
+
                 switch (position) {
                     case 0:
-                        selectedFragment = new LearningFragment();  // Thay thế bằng Fragment mới
+                        selectedFragment = new LearningFragment();
                         break;
                     case 1:
-                        selectedFragment = new HomeExerciseFragment();  // Thay thế bằng Fragment mới
+                        selectedFragment = new HomeExerciseFragment();
                         break;
                     case 2:
-                        selectedFragment = new FlashCardsFragment();  // Thay thế bằng Fragment mới
+                        selectedFragment = new FlashCardsFragment();
                         break;
                     case 3:
                         selectedFragment = new MiniGameFragment();
@@ -173,17 +152,17 @@ public class HomeFragment extends Fragment {
                         selectedFragment = new CalendarFragment();
                         break;
                     default:
-                        // Nếu vị trí không hợp lệ, không làm gì
+
                         return;
                 }
 
-                // Kiểm tra xem Fragment có null hay không trước khi thực hiện thay thế
+
                 if (selectedFragment != null) {
-                    // Sử dụng FragmentManager và FragmentTransaction để thay thế Fragment
+
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.home_page, selectedFragment);  // R.id.fragment_container là nơi mà Fragment Home hiện tại đang nằm
-                    transaction.addToBackStack(null);  // Thêm vào back stack để có thể quay lại bằng nút Back
-                    transaction.commit();  // Hoàn thành giao dịch
+                    transaction.replace(R.id.home_page, selectedFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                 }
             }
         });
