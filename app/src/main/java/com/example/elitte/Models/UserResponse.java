@@ -21,6 +21,10 @@ public class UserResponse {
     @Expose
     private Object password;
 
+    @SerializedName("listUserExamSet")
+    @Expose
+    private Object listUserExamSet;
+
     public Integer getId() {
         return id;
     }
@@ -61,4 +65,11 @@ public class UserResponse {
         this.password = password;
     }
 
+    public Object getListUserExamSet() {
+        return listUserExamSet;
+    }
+
+    public void setListUserExamSet(Object listUserExamSet) {
+        this.listUserExamSet = listUserExamSet;
+    }
 }

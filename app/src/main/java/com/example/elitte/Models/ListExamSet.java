@@ -14,6 +14,13 @@ public class ListExamSet implements Serializable {
     @Expose
     private String name;
 
+    @SerializedName("typeOfExamSet")
+    @Expose
+    private Object typeOfExamSet;
+    @SerializedName("listUserExamSet")
+    @Expose
+    private Object listUserExamSet;
+
     public Integer getId() {
         return id;
     }
@@ -28,5 +35,21 @@ public class ListExamSet implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Object getTypeOfExamSet() {
+        return typeOfExamSet;
+    }
+
+    public void setTypeOfExamSet(Object typeOfExamSet) {
+        this.typeOfExamSet = typeOfExamSet;
+    }
+
+    public Object getListUserExamSet() {
+        return listUserExamSet;
+    }
+
+    public void setListUserExamSet(Object listUserExamSet) {
+        this.listUserExamSet = listUserExamSet;
     }
 }

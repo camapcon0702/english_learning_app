@@ -224,6 +224,7 @@ public class HomeExerciseFragment extends Fragment {
             @Override
             public void onFailure(Call<List<TypeOfExamSet>> call, Throwable t) {
                 Toast.makeText(getContext(), "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                System.out.println(t.getMessage());
             }
         });
     }

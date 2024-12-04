@@ -3,11 +3,14 @@ package com.example.elitte.Retrofit;
 import com.example.elitte.Models.ListExamSet;
 import com.example.elitte.Models.Questions;
 import com.example.elitte.Models.TypeOfExamSet;
+import com.example.elitte.Models.UserExamset;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ExerciseAPI {
@@ -23,5 +26,8 @@ public interface ExerciseAPI {
 
     @GET("/api/examsets/nums/{id}")
     public Call<Integer> getNumberQuestionFromExamSet(@Path("id") int id);
+
+    @POST("/api/history/create")
+    public Call<UserExamset> saveHistory(@Body UserExamset data);
 
 }

@@ -19,9 +19,12 @@ import android.widget.TextView;
 import com.example.elitte.JWT.TokenManager;
 import com.example.elitte.Models.ListExamSet;
 import com.example.elitte.Models.Questions;
+import com.example.elitte.Models.UserExamset;
+import com.example.elitte.Models.UserResponse;
 import com.example.elitte.R;
 import com.example.elitte.Retrofit.ExerciseAPI;
 import com.example.elitte.Retrofit.RetrofitInstance;
+import com.example.elitte.Retrofit.UserAPI;
 
 
 import java.util.ArrayList;
@@ -138,17 +141,32 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
         });
     }
 
+//    private void NextQuestion() {
+//        currentQuestion++;
+//        if (currentQuestion < listQuestion.size()) {
+//            resetOptionsBackground();
+//            setDataQuestions(listQuestion.get(currentQuestion));
+//        } else {
+//
+//            btnNext.setText("Kết thúc");
+//        }
+//
+//        enableOptions();
+//        isAnswered = false;
+//    }
+
     private void NextQuestion() {
-        currentQuestion++;
-        if (currentQuestion < listQuestion.size()) {
+        if (currentQuestion + 1 < listQuestion.size()) {
+            currentQuestion++;
             resetOptionsBackground();
             setDataQuestions(listQuestion.get(currentQuestion));
+            enableOptions();
+            btnNext.setText("Tiếp tục");
         } else {
-
             btnNext.setText("Kết thúc");
-        }
 
-        enableOptions();
+            saveHistory();
+        }
         isAnswered = false;
     }
 
@@ -320,4 +338,62 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
             }
         });
     }
+
+    
+
+    private void saveHistory() {
+        String token = TokenManager.getToken(getContext());
+        ExerciseAPI api = RetrofitInstance.getRetrofitInstance(token).create(ExerciseAPI.class);
+        UserAPI userApi = RetrofitInstance.getRetrofitInstance(token).create(UserAPI.class);
+
+        userApi.getUserProfile().enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse currentUser = response.body();
+
+                    UserExamset userExamset = new UserExamset();
+                    userExamset.setExamSet(selectedExamSet);
+                    userExamset.setDiem(correctAnswersCount);
+                    userExamset.setUser(currentUser);
+
+                    Call<UserExamset> saveCall = api.saveHistory(userExamset);
+                    saveCall.enqueue(new Callback<UserExamset>() {
+                        @Override
+                        public void onResponse(Call<UserExamset> call, Response<UserExamset> response) {
+                            if (response.isSuccessful()) {
+                                Log.d("API_SUCCESS", "History saved successfully");
+                                navigateToResultPage();
+                            } else {
+                                Log.e("API_ERROR", "Failed to save history: " + response.errorBody());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<UserExamset> call, Throwable t) {
+                            Log.e("API_ERROR", "API call failed: " + t.getMessage());
+                        }
+                    });
+                } else {
+                    Log.e("API_ERROR", "Failed to get user profile: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.e("API_ERROR", "Failed to fetch user profile: " + t.getMessage());
+            }
+        });
+    }
+
+
+    private void navigateToResultPage() {
+        Fragment fragment = new TopicFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.home_page, fragment);
+        transaction.commit();
+    }
+
+
+
 }
