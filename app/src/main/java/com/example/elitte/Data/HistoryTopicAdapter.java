@@ -1,3 +1,4 @@
+
 package com.example.elitte.Data;
 
 import android.content.Context;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.elitte.R;
 import com.example.elitte.entity.HistoryTopic;
-import com.example.elitte.entity.Topic;
 
 import java.util.List;
 
@@ -27,19 +27,22 @@ public class HistoryTopicAdapter extends ArrayAdapter<HistoryTopic> {
             viewHolder = new ViewHolder();
             viewHolder.numberTopic = convertView.findViewById(R.id.number_topic);
             viewHolder.point = convertView.findViewById(R.id.point_topic);
+            viewHolder.ngayLamBai = convertView.findViewById(R.id.ngayLamBai);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         HistoryTopic historyTopic = getItem(position);
-        viewHolder.numberTopic.setText("Bộ đề " + historyTopic.getTopic().getNumberTopic());
-        viewHolder.point.setText("Điểm : "+ historyTopic.getPoint());
+        viewHolder.numberTopic.setText(historyTopic.getTopic().getName());
+        viewHolder.point.setText("Điểm : " + historyTopic.getPoint());
+        viewHolder.ngayLamBai.setText(historyTopic.getNgayLamBai());
         return convertView;
     }
 
     static class ViewHolder {
         TextView numberTopic;
         TextView point;
+        TextView ngayLamBai;
     }
 }

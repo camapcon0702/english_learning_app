@@ -30,4 +30,7 @@ public interface ExerciseAPI {
     @POST("/api/history/create")
     public Call<UserExamset> saveHistory(@Body UserExamset data);
 
+    @GET("/api/history/{id}")
+    public Call<List<UserExamset>> getHistoryOfUser(@Path("id") int id);
+
 }
