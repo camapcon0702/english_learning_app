@@ -46,7 +46,7 @@
         <ImageView
             android:id="@+id/image"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:src="@drawable/icon_airport"
