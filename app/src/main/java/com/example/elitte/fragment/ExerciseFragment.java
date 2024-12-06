@@ -63,6 +63,30 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
 
     private boolean isAnswered = false;
 
+    private MediaPlayer mediaPlayer;
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        stopAndReleaseMediaPlayer();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        stopAndReleaseMediaPlayer();
+    }
+
+    private void stopAndReleaseMediaPlayer() {
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -145,26 +169,19 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
         btnAmThanh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String soundFileName = listQuestion.get(currentQuestion).getSound();
 
                 if (soundFileName != null && !soundFileName.trim().isEmpty()) {
-
                     int soundResId = getResources().getIdentifier(soundFileName, "raw", getContext().getPackageName());
-
                     if (soundResId != 0) {
-
-                        MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), soundResId);
+                        stopAndReleaseMediaPlayer();
+                        mediaPlayer = MediaPlayer.create(getContext(), soundResId);
                         mediaPlayer.start();
-
-
-                        mediaPlayer.setOnCompletionListener(MediaPlayer::release);
+                        mediaPlayer.setOnCompletionListener(mp -> stopAndReleaseMediaPlayer());
                     } else {
-
                         Toast.makeText(getContext(), "Không tìm thấy tệp âm thanh!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // Hiển thị thông báo nếu tên file âm thanh không hợp lệ
                     Toast.makeText(getContext(), "Tên tệp âm thanh không hợp lệ!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -364,7 +381,7 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
         });
     }
 
-    
+
 
     private void saveHistory() {
         String token = TokenManager.getToken(getContext());
@@ -446,3 +463,5 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
 
 
 }
+
+
