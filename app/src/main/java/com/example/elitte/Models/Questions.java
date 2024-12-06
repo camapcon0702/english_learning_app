@@ -10,7 +10,7 @@ public class Questions {
     private Integer idQuestion;
     @SerializedName("sound")
     @Expose
-    private Object sound;
+    private String sound;
     @SerializedName("name")
     @Expose
     private String name;
@@ -48,11 +48,11 @@ public class Questions {
         this.idQuestion = idQuestion;
     }
 
-    public Object getSound() {
+    public String getSound() {
         return sound;
     }
 
-    public void setSound(Object sound) {
+    public void setSound(String sound) {
         this.sound = sound;
     }
 

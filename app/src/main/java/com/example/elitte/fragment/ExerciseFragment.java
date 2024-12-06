@@ -1,6 +1,7 @@
 package com.example.elitte.fragment;
 
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.elitte.JWT.TokenManager;
 import com.example.elitte.Models.ListExamSet;
@@ -139,6 +141,35 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
                 transaction.commit();
             }
         });
+
+        btnAmThanh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String soundFileName = listQuestion.get(currentQuestion).getSound();
+
+                if (soundFileName != null && !soundFileName.trim().isEmpty()) {
+
+                    int soundResId = getResources().getIdentifier(soundFileName, "raw", getContext().getPackageName());
+
+                    if (soundResId != 0) {
+
+                        MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), soundResId);
+                        mediaPlayer.start();
+
+
+                        mediaPlayer.setOnCompletionListener(MediaPlayer::release);
+                    } else {
+
+                        Toast.makeText(getContext(), "Không tìm thấy tệp âm thanh!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // Hiển thị thông báo nếu tên file âm thanh không hợp lệ
+                    Toast.makeText(getContext(), "Tên tệp âm thanh không hợp lệ!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
 
@@ -247,6 +278,9 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
             handleOptionClick(optionD, listQuestion.get(currentQuestion).getOption4());
         } else if (viewId == R.id.nextButton) {
             NextQuestion();
+        } else if (viewId == R.id.amThanh) {
+
+            playSound(listQuestion.get(currentQuestion).getSound());
         }
     }
 
@@ -383,6 +417,30 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.home_page, fragment);
         transaction.commit();
+    }
+
+
+    private void playSound(String soundFileName) {
+        if (soundFileName == null || soundFileName.trim().isEmpty()) {
+            Log.e("AUDIO_ERROR", "Sound file name is null or empty");
+            return;
+        }
+
+        int resId = getResources().getIdentifier(soundFileName, "raw", getContext().getPackageName());
+        if (resId == 0) {
+            Log.e("AUDIO_ERROR", "Sound file not found in raw folder: " + soundFileName);
+            return;
+        }
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), resId);
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(mp -> {
+                mp.release();
+            });
+        } else {
+            Log.e("AUDIO_ERROR", "Failed to initialize MediaPlayer");
+        }
     }
 
 
