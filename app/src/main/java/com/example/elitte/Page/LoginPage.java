@@ -46,7 +46,6 @@ public class LoginPage extends AppCompatActivity {
             return insets;
         });
 
-
         addControls();
         addEvents();
 
