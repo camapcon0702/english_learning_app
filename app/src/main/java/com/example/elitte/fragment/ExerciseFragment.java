@@ -141,19 +141,6 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
         });
     }
 
-//    private void NextQuestion() {
-//        currentQuestion++;
-//        if (currentQuestion < listQuestion.size()) {
-//            resetOptionsBackground();
-//            setDataQuestions(listQuestion.get(currentQuestion));
-//        } else {
-//
-//            btnNext.setText("Kết thúc");
-//        }
-//
-//        enableOptions();
-//        isAnswered = false;
-//    }
 
     private void NextQuestion() {
         if (currentQuestion + 1 < listQuestion.size()) {
@@ -188,12 +175,11 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
 
 
 
-    private void setDataQuestions(Questions question) {
 
+
+    private void setDataQuestions(Questions question) {
         String nQuestion = "Question " + question.getNumberQuestion();
         numberQuestion.setText(nQuestion);
-
-
 
         if (question.getName() != null && !question.getName().trim().isEmpty()) {
             contentQuestion.setVisibility(View.VISIBLE);
@@ -202,20 +188,26 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
             contentQuestion.setVisibility(View.GONE);
         }
 
-
         if (question.getSound() != null && !question.getSound().toString().trim().isEmpty()) {
             btnAmThanh.setVisibility(View.VISIBLE);
         } else {
             btnAmThanh.setVisibility(View.GONE);
         }
 
-
         answerA.setText(question.getOption1());
         answerB.setText(question.getOption2());
         answerC.setText(question.getOption3());
-        answerD.setText(question.getOption4());
+
+        if (question.getOption4() != null && !question.getOption4().trim().isEmpty()) {
+            optionD.setVisibility(View.VISIBLE);
+            answerD.setText(question.getOption4());
+        } else {
+            optionD.setVisibility(View.GONE);
+        }
+
         explain.setText("");
     }
+
 
 
 
@@ -288,7 +280,6 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener{
         optionD.setEnabled(false);
     }
 
-//hello
 
     private void showCorrectAnswer(Questions question) {
         if (question.getOption1().equalsIgnoreCase(question.getCorrectAnswer())) {
