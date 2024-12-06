@@ -94,11 +94,11 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_home_page, container, false);
 
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.home_page), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+//        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.home_page), (v, insets) -> {
+//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+//            return insets;
+//        });
 
         addControls();
         addEvents();
