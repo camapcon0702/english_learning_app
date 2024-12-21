@@ -2,9 +2,6 @@ package com.example.elitte.fragment;
 
 import android.os.Bundle;
 
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
@@ -19,13 +16,12 @@ import android.widget.TextView;
 
 import com.example.elitte.Data.GridItemAdapterVer;
 import com.example.elitte.JWT.TokenManager;
-import com.example.elitte.Models.LoginResponse;
 import com.example.elitte.Models.UserResponse;
 import com.example.elitte.R;
-import com.example.elitte.Retrofit.AuthApi;
 import com.example.elitte.Retrofit.RetrofitInstance;
 import com.example.elitte.Retrofit.UserAPI;
 import com.example.elitte.entity.GridItem;
+import com.example.elitte.fragment.alarm.CalendarFragment;
 
 import java.util.Arrays;
 import java.util.List;

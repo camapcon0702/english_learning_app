@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.elitte.fragment.AccountFragment;
-import com.example.elitte.fragment.CalendarFragment;
+import com.example.elitte.fragment.alarm.CalendarFragment;
 import com.example.elitte.fragment.HistoryFragment;
 import com.example.elitte.fragment.HomeFragment;
 

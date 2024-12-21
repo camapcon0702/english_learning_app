@@ -20,20 +20,20 @@
         android:padding="20dp">
 
         <ImageView
-            android:layout_width="20dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="2"
             android:src="@drawable/icon_acc"/>
         <TextView
             android:id="@+id/name_account"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Nguyễn Quang Ninh"
+            android:text="Lê Quý"
             android:textSize="24sp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            />
+            android:gravity="end"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/information_account"
@@ -60,7 +60,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="quangninhnqn24@gmail.com"
+            android:text="quyle@gmail.com"
             android:layout_marginTop="10dp"
             android:textSize="24sp"
             android:textColor="@color/black"/>
@@ -68,7 +68,7 @@
     </LinearLayout>
     <LinearLayout
         android:id="@id/linear_main"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/information_account"

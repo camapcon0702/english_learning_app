@@ -39,7 +39,7 @@ android {
 
 dependencies {
 
-    implementation(libs.core.splashscreen)
+//    implementation(libs.core.splashscreen)
 
     implementation(libs.appcompat)
     implementation(libs.material)

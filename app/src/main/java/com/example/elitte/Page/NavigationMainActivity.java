@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.elitte.fragment.AccountFragment;
-import com.example.elitte.fragment.CalendarFragment;
+import com.example.elitte.fragment.alarm.CalendarFragment;
 import com.example.elitte.fragment.HistoryFragment;
 import com.example.elitte.fragment.HomeFragment;
 import com.example.elitte.view_pager_adapter.ViewPagerAdapter;

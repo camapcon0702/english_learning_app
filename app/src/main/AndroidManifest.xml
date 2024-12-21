@@ -3,6 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:resizeable="true" />
+
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -15,18 +28,18 @@
         android:theme="@style/Theme.ELITTE"
         tools:targetApi="tiramisu"
         android:enableOnBackInvokedCallback="true">
-        <activity android:name=".Page.TopicsPage"
-            android:exported="true">
+<!--        <activity android:name=".Page.TopicsPage"-->
+<!--            android:exported="true">-->
 
-        </activity>
-        <activity android:name=".Page.TopicPage"
-            android:exported="true">
+<!--        </activity>-->
+<!--        <activity android:name=".Page.TopicPage"-->
+<!--            android:exported="true">-->
 
-        </activity>
-        <activity android:name=".Page.HistoryTopicPage"
-            android:exported="true">
+<!--        </activity>-->
+<!--        <activity android:name=".Page.HistoryTopicPage"-->
+<!--            android:exported="true">-->
 
-        </activity>
+<!--        </activity>-->
         <activity android:name=".Page.ChangePassword"
             android:exported="true">
 
@@ -97,6 +110,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".fragment.alarm.AlarmReceiver" />
+        <receiver android:name=".fragment.alarm.StopAlarmReceiver" />
+        <receiver android:name=".fragment.alarm.SnoozeAlarmReceiver" />
+        <service android:name=".fragment.alarm.AlarmService"/>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="YOUR_ADMOB_APP_ID" />
     </application>
 
 </manifest>
