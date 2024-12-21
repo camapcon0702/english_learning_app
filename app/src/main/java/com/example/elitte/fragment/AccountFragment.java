@@ -6,14 +6,23 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.elitte.JWT.TokenManager;
+import com.example.elitte.Models.UserResponse;
 import com.example.elitte.Page.AccountPage;
 import com.example.elitte.Page.ChangePassword;
 import com.example.elitte.R;
+import com.example.elitte.Retrofit.RetrofitInstance;
+import com.example.elitte.Retrofit.UserAPI;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +33,7 @@ public class AccountFragment extends Fragment {
 
     private View view;
     private TextView changePassword;
+    private TextView txtName, txtEmail;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,6 +83,7 @@ public class AccountFragment extends Fragment {
 
         addControl();
         addEvent();
+        welcomeUser();
 
         return view;
     }
@@ -90,6 +101,37 @@ public class AccountFragment extends Fragment {
     }
 
     private void addControl(){
+        txtName = view.findViewById(R.id.name_account);
+        txtEmail = view.findViewById(R.id.email_account);
         changePassword = view.findViewById(R.id.change_password);
+    }
+
+    public void welcomeUser() {
+        String token = TokenManager.getToken(getContext());
+        System.out.println(token);
+        if (token == null) {
+            Log.e("WelcomeUser", "Token not found");
+            return;
+        }
+
+        UserAPI userAPI = RetrofitInstance.getRetrofitInstance(token).create(UserAPI.class);
+        userAPI.getUserProfile().enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    UserResponse user = response.body();
+
+                    txtName.setText(user.getLastName() + " " + user.getFirstName());
+                    txtEmail.setText(user.getEmail() + "");
+                } else {
+                    Log.e("WelcomeUser", "Failed to fetch user profile");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.e("WelcomeUser", "Error fetching user profile: " + t.getMessage());
+            }
+        });
     }
 }
